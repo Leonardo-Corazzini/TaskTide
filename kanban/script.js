@@ -19,8 +19,12 @@ addForm.addEventListener('submit', function(event) {
     event.preventDefault()
     overlayContainer.classList.add('d-off')
     overlayContainer.classList.remove('overflow-h')
-    const toDoEl = createCard('div', ['to-do-element'], [], el=>(el.innerText = toDoText.value))
+    const toDoEl = createCard('div', ['to-do-element'], toDoText.value, el=>(el.draggable = true))
     cardBody.appendChild(toDoEl)
+
+    toDoEl.addEventListener('ondragstart', function(event){
+        console.log('sto muovendo');
+    })
 
     
 })
@@ -28,10 +32,25 @@ addForm.addEventListener('submit', function(event) {
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 function createCard(
     tagName,
     classList = [],
-    content = [],
+    content,
     callback = false
 ) {
     const el = document.createElement(tagName);
@@ -40,18 +59,11 @@ function createCard(
         el.classList.add(...classList);
     }
 
-
     if (callback) {
         callback(el);
     }
-    if (Array.isArray(content)) {
-        for (let i = 0; i < content.length; i++) {
-            if (content[i] instanceof HTMLElement) {
-                el.appendChild(content[i]);
-            }
-        }
-    } else {
-        console.error("Non posso aggiungere l'elemento");
-    }
+
+    el.innerText = content
+
     return el;
 }
