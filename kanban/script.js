@@ -5,22 +5,22 @@ const addForm = document.getElementById('add-form')
 // console.log(overlayContainer,addForm);
 const toDoText = document.getElementById('to-do-text')
 const cardBody = document.querySelector('.card-body')
-const cardsBody = document.querySelectorAll('.card-body')
+const cards = document.querySelectorAll('.card')
 
 
 
-addBtn.addEventListener('click', function(event) {
+addBtn.addEventListener('click', function (event) {
     overlayContainer.classList.remove('d-off')
     overlayContainer.classList.add('overflow-h')
     console.log('object');
 })
 
 
-addForm.addEventListener('submit', function(event) {
+addForm.addEventListener('submit', function (event) {
     event.preventDefault()
     overlayContainer.classList.add('d-off')
     overlayContainer.classList.remove('overflow-h')
-    const toDoEl = createCard('div', ['to-do-element'], toDoText.value, el=>(el.draggable = true))
+    const toDoEl = createCard('div', ['to-do-element'], toDoText.value, el => (el.draggable = true))
     cardBody.appendChild(toDoEl)
 
     toDoEl.addEventListener('dragstart', dragStart)
@@ -28,37 +28,46 @@ addForm.addEventListener('submit', function(event) {
 
 })
 
-cardsBody.forEach((el)=>{
+cards.forEach((el) => {
     el.addEventListener('dragover', dragOver)
     el.addEventListener('dragenter', dragEnter)
     el.addEventListener('dragleave', dragLeave)
     el.addEventListener('drop', drop)
-    
+
 })
 
+let dragItem = null
 
-function dragOver(){
-    // console.log('sto tenendo');
-}
-
-function dragEnter(){
-    console.log('Enter');
-}
-
-function dragLeave(){
-    console.log('Leave');
-}
-
-function drop(){
-    console.log('droppato');
-}
-
-function dragStart(){
+function dragStart() {
+    setTimeout(() => this.classList.add('d-none'), 0)
+    dragItem = this
     console.log('on');
 }
 
-function dragEnd(){
+function dragEnd() {
+    this.classList.remove('d-none')
     console.log('off');
+    dragItem = null
+    
+}
+
+function dragOver(event) {
+    event.preventDefault()
+    console.log('sto tenendo');
+}
+
+function dragEnter() {
+    console.log('Enter');
+}
+
+function dragLeave() {
+    console.log('Leave');
+}
+
+function drop() {
+    console.log('droppato');
+    this.appendChild(dragItem)
+    
 }
 
 function createCard(
