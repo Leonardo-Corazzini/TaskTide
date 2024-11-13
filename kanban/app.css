@@ -154,7 +154,6 @@ h1 {
     padding: 7px 10px;
     background-color: #149e97;
     display: inline-block;
-    
     border-radius: 14px;
     line-height: 20px;
     cursor: pointer;
@@ -165,6 +164,20 @@ h1 {
 #confirm-button:hover {
     background-color: #44b4af;
 }
+.closed-btn {
+    margin: 50px;
+    font-size: 50px;
+    color: white;
+    position: fixed;
+    top: 50px;
+    right: 50px;
+    transition: transform 0.3s;
+}
+.closed-btn:hover {
+    transform: scale(1.5);
+    cursor: pointer;
+}
+
 /* utilities class */
 .overflow-h {
     overflow: hidden;

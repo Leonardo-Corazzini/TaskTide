@@ -1,22 +1,26 @@
 const addBtn = document.querySelector('.add-button')
-//console.log(addBtn);
 const overlayContainer = document.querySelector('.overlay-container')
 const addForm = document.getElementById('add-form')
-// console.log(overlayContainer,addForm);
+const confirmBtn = document.getElementById('confirm-button')
 const toDoText = document.getElementById('to-do-text')
 const cardBody = document.querySelector('.card-body')
 const cards = document.querySelectorAll('.card')
 const trashImg = document.querySelector('.trash-img')
 
 
-
-addBtn.addEventListener('click', function (event) {
+// ascolto bottone di aggiunta task
+addBtn.addEventListener('click', function () {
     overlayContainer.classList.remove('d-off')
     overlayContainer.classList.add('overflow-h')
-    console.log('object');
 })
-
-
+// chiusura overlay
+overlayContainer.addEventListener('click', function(event){
+    if (event.target !== toDoText && event.target !== confirmBtn ){
+        overlayContainer.classList.add('d-off')
+        overlayContainer.classList.remove('overflow-h')
+    }
+})
+// inserimento task da parte dell'utente
 addForm.addEventListener('submit', function (event) {
     event.preventDefault()
     overlayContainer.classList.add('d-off')
@@ -30,13 +34,15 @@ addForm.addEventListener('submit', function (event) {
 
 })
 
+
+// aggiunto eventi di drag and drop alle card
 cards.forEach((el) => {
     el.addEventListener('dragover', dragOver)
     el.addEventListener('dragenter', dragEnter)
     el.addEventListener('dragleave', dragLeave)
     el.addEventListener('drop', drop)
 })
-
+// aggiunto eventi di drag and drop al cestino
 trashImg.addEventListener('dragenter', function(event){
     trashImg.src = "../img/cestino-aperto.png"
     
@@ -60,6 +66,8 @@ trashImg.addEventListener('drop', function(event){
     console.log('sto eliminando');
 })
 
+
+// funzioni di drag and drop della task
 let dragItem = null
 
 function dragStart() {
@@ -96,6 +104,9 @@ function drop() {
     
 }
 
+
+
+// utilities function
 function createCard(
     tagName,
     classList = [],
