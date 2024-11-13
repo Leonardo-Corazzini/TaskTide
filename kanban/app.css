@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Delius+Unicase:wght@400;700&family=Funnel+Display:wght@300..800&family=Meow+Script&family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Sour+Gummy:ital,wght@0,100..900;1,100..900&display=swap');
+
 /* RESET RULES*/
 
 * {
@@ -25,10 +27,6 @@ img {
     margin: 0 auto;
 }
 
-header {
-    padding-left: 15px;
-}
-
 .row {
     display: flex;
     flex-wrap: wrap;
@@ -41,27 +39,50 @@ header {
 
 .card {
     text-align: center;
-    background-color: aqua;
     min-height: 500px;
+    border-radius: 10px;
+    background-color: white;
+    padding: 10px;
+    box-shadow: rgba(0, 0, 0, 0.297) 2px 2px 13px 5px;
+    
 }
+
 
 .overlay-container {
     height: 100vh;
     width: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
+    background-color: #145b9eec;
     position: fixed;
     top: 0;
     left: 0;
     z-index: 1;
     display: flex;
-    flex-direction: column;
     align-items: center;
+    flex-direction: row-reverse;
     justify-content: center;
     visibility: visible;
     opacity: 1;
     transition: opacity 1s ease, visibility 0.3s ease;
     user-select: none;
 }
+
+body {
+    font-family: "Funnel Display", sans-serif;
+    background-color: rgb(232, 232, 232);
+}
+
+header {
+    display: flex;
+    padding-left: 15px;
+    padding-top: 10px;
+    background-color: whitesmoke;
+    box-shadow: #145C9E 2px 2px 200px 1px;
+}
+
+.full-container {
+    max-width: 100%;
+}
+
 
 .d-off.overlay-container {
     opacity: 0;
@@ -72,14 +93,96 @@ header {
     overflow: hidden;
 }
 
-/* .overlay-bg {
-    background-color: black opacity 0.7;
-} */
-
 .to-do-element {
     cursor: pointer;
+    border-radius: 7px;
+    background-color: rgb(241, 241, 241);
+    box-shadow: rgba(0, 0, 0, 0.297) 0px 0px 12px 1px;
+    margin: 15px;
+    padding: 5px;
+    font-weight: 200;
+    font-size: 13px;
 }
 
 .d-none {
-    visibility: hidden;
+    display: none;
+}
+
+.trash {
+    position: relative;
+    width: 80px;
+    display: flex;
+}
+
+.trash img {
+    position: absolute;
+    margin-top: 3px;
+    
+}
+
+
+.add-button {
+    margin: 15px 0 0 15px;
+    padding: 7px 10px;
+    background-color: #145C9E;
+    display: inline-block;
+    
+    border-radius: 14px;
+    line-height: 20px;
+    cursor: pointer;
+    color: white;
+    box-shadow: rgba(0, 0, 0, 0.297) 2px 2px 4px 1px;
+       
+}
+
+.add-button:hover {
+    background-color: #2373be;
+
+}
+
+h1 {
+    text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.356);
+    line-height: 30px;
+    padding-bottom: 15px;
+    padding-left: 5px;
+
+}
+.col h2 {
+    color: rgb(40, 39, 39);
+    padding-top: 10px;
+}
+
+#confirm-button {
+    margin: 15px 0 0 15px;
+    padding: 7px 10px;
+    background-color: #149e97;
+    display: inline-block;
+    
+    border-radius: 14px;
+    line-height: 20px;
+    cursor: pointer;
+    color: white;
+    box-shadow: rgba(0, 0, 0, 0.297) 2px 2px 4px 1px;
+}
+
+#confirm-button:hover {
+    background-color: #44b4af;
+}
+
+.to-do-element:hover {
+    transform: scale(1.1);
+    background-color: #83a4c2;
+}
+
+#to-do-text{
+    line-height: 30px;
+    width: 60vw;
+    border-radius: 14px;
+    box-shadow: rgba(0, 0, 0, 0.297) 2px 2px 4px 1px;
+}
+
+#add-form {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
 }

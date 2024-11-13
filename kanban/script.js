@@ -6,6 +6,7 @@ const addForm = document.getElementById('add-form')
 const toDoText = document.getElementById('to-do-text')
 const cardBody = document.querySelector('.card-body')
 const cards = document.querySelectorAll('.card')
+const trashImg = document.querySelector('.trash-img')
 
 
 
@@ -25,6 +26,7 @@ addForm.addEventListener('submit', function (event) {
 
     toDoEl.addEventListener('dragstart', dragStart)
     toDoEl.addEventListener('dragend', dragEnd)
+    toDoText.value = ''
 
 })
 
@@ -33,7 +35,29 @@ cards.forEach((el) => {
     el.addEventListener('dragenter', dragEnter)
     el.addEventListener('dragleave', dragLeave)
     el.addEventListener('drop', drop)
+})
 
+trashImg.addEventListener('dragenter', function(event){
+    trashImg.src = "../img/cestino-aperto.png"
+    
+    console.log('entrato');
+})
+
+trashImg.addEventListener('dragleave', function(event){
+    trashImg.src = "../img/cestino-chiuso.png"
+    
+    console.log('uscito');
+})
+
+trashImg.addEventListener('dragover', function(event){
+    event.preventDefault()
+
+})
+
+trashImg.addEventListener('drop', function(event){
+    trashImg.src = "../img/cestino-chiuso.png"
+    dragItem.remove()
+    console.log('sto eliminando');
 })
 
 let dragItem = null
@@ -53,10 +77,12 @@ function dragEnd() {
 
 function dragOver(event) {
     event.preventDefault()
+    
     console.log('sto tenendo');
 }
 
 function dragEnter() {
+    
     console.log('Enter');
 }
 
