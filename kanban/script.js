@@ -5,6 +5,7 @@ const addForm = document.getElementById('add-form')
 // console.log(overlayContainer,addForm);
 const toDoText = document.getElementById('to-do-text')
 const cardBody = document.querySelector('.card-body')
+const cardsBody = document.querySelectorAll('.card-body')
 
 
 
@@ -22,30 +23,43 @@ addForm.addEventListener('submit', function(event) {
     const toDoEl = createCard('div', ['to-do-element'], toDoText.value, el=>(el.draggable = true))
     cardBody.appendChild(toDoEl)
 
-    toDoEl.addEventListener('ondragstart', function(event){
-        console.log('sto muovendo');
-    })
+    toDoEl.addEventListener('dragstart', dragStart)
+    toDoEl.addEventListener('dragend', dragEnd)
 
+})
+
+cardsBody.forEach((el)=>{
+    el.addEventListener('dragover', dragOver)
+    el.addEventListener('dragenter', dragEnter)
+    el.addEventListener('dragleave', dragLeave)
+    el.addEventListener('drop', drop)
     
 })
 
 
+function dragOver(){
+    // console.log('sto tenendo');
+}
 
+function dragEnter(){
+    console.log('Enter');
+}
 
+function dragLeave(){
+    console.log('Leave');
+}
 
+function drop(){
+    console.log('droppato');
+}
 
+function dragStart(){
+    console.log('on');
+}
 
-
-
-
-
-
-
-
-
-
-
-
+function dragEnd(){
+    console.log('off');
+}
 
 function createCard(
     tagName,
