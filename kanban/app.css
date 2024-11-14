@@ -127,7 +127,8 @@ h1 {
     z-index: 1;
     display: flex;
     align-items: center;
-    flex-direction: row-reverse;
+    flex-direction: column;
+    row-gap: 25px;
     justify-content: center;
     visibility: visible;
     opacity: 1;
@@ -138,6 +139,27 @@ h1 {
 .d-off.overlay-container {
     opacity: 0;
     visibility: hidden;
+}
+.icon-section{
+    display: flex;
+    flex-wrap:wrap;
+    justify-content:space-between;
+    align-items: center;
+    width: 50%;
+}
+.icon{
+    background-color: rgb(104, 97, 97);
+    font-size: 35px;
+    padding: 5px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.icon:hover{
+    background-color: white;
+    
+}
+.icon:focus{
+    background-color: rgb(20, 20, 20);
 }
 #add-form {
     display: flex;
