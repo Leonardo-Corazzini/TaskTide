@@ -6,7 +6,10 @@ const toDoText = document.getElementById('to-do-text')
 const cardBody = document.querySelector('.card-body')
 const cards = document.querySelectorAll('.card')
 const trashImg = document.querySelector('.trash-img')
+const closeBtn = document.querySelector('.closed-btn')
+const selectedIcon = document.querySelectorAll('.icon').innerHTML
 
+console.log(selectedIcon);
 
 // ascolto bottone di aggiunta task
 addBtn.addEventListener('click', function () {
@@ -14,18 +17,17 @@ addBtn.addEventListener('click', function () {
     overlayContainer.classList.add('overflow-h')
 })
 // chiusura overlay
-overlayContainer.addEventListener('click', function(event){
-    if (event.target !== toDoText && event.target !== confirmBtn ){
+closeBtn.addEventListener('click', function(event){
         overlayContainer.classList.add('d-off')
         overlayContainer.classList.remove('overflow-h')
-    }
+
 })
 // inserimento task da parte dell'utente
 addForm.addEventListener('submit', function (event) {
     event.preventDefault()
     overlayContainer.classList.add('d-off')
     overlayContainer.classList.remove('overflow-h')
-    const toDoEl = createCard('div', ['to-do-element'], toDoText.value, el => (el.draggable = true))
+    const toDoEl = createCard('div', ['to-do-element'], toDoText.value, icon, el => (el.draggable = true))
     cardBody.appendChild(toDoEl)
 
     toDoEl.addEventListener('dragstart', dragStart)
@@ -33,6 +35,16 @@ addForm.addEventListener('submit', function (event) {
     toDoText.value = ''
 
 })
+selectedIcon.forEach((clickedicon) =>{
+
+    clickedicon.addEventListener('click', function(event){
+
+        
+        console.log(clickedicon);
+    })
+
+})
+
 
 
 // aggiunto eventi di drag and drop alle card
@@ -111,6 +123,7 @@ function createCard(
     tagName,
     classList = [],
     content,
+    icon,
     callback = false
 ) {
     const el = document.createElement(tagName);
@@ -125,5 +138,9 @@ function createCard(
 
     el.innerText = content
 
+    el.innerHTML = icon
+
     return el;
 }
+
+
