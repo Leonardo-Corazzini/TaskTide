@@ -7,9 +7,16 @@ const cardBody = document.querySelector('.card-body')
 const cards = document.querySelectorAll('.card')
 const trashImg = document.querySelector('.trash-img')
 const closeBtn = document.querySelector('.closed-btn')
-const selectedIcon = document.querySelectorAll('.icon').innerHTML
+const selectedIcon = document.querySelectorAll('.icon')
+let icon = null
 
-console.log(selectedIcon);
+
+for (let i = 0; i < selectedIcon.length;i++){
+    let iconChekced = selectedIcon[i]
+    iconChekced.addEventListener('click',function(){
+        icon = iconChekced.innerHTML
+    })
+}
 
 // ascolto bottone di aggiunta task
 addBtn.addEventListener('click', function () {
@@ -33,18 +40,8 @@ addForm.addEventListener('submit', function (event) {
     toDoEl.addEventListener('dragstart', dragStart)
     toDoEl.addEventListener('dragend', dragEnd)
     toDoText.value = ''
-
+    icon = null
 })
-selectedIcon.forEach((clickedicon) =>{
-
-    clickedicon.addEventListener('click', function(event){
-
-        
-        console.log(clickedicon);
-    })
-
-})
-
 
 
 // aggiunto eventi di drag and drop alle card
@@ -135,10 +132,12 @@ function createCard(
     if (callback) {
         callback(el);
     }
-
-    el.innerText = content
-
-    el.innerHTML = icon
+    if (icon !== null){
+        el.innerHTML = content + ' ' + icon
+    } else {
+        el.innerHTML = content
+    }
+    
 
     return el;
 }
