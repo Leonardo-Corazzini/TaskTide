@@ -128,7 +128,7 @@ h1 {
     display: flex;
     align-items: center;
     flex-direction: column;
-    row-gap: 25px;
+    row-gap: 35px;
     justify-content: center;
     visibility: visible;
     opacity: 1;
@@ -171,6 +171,13 @@ h1 {
     width: 60vw;
     border-radius: 14px;
     box-shadow: rgba(0, 0, 0, 0.297) 2px 2px 4px 1px;
+    position: absolute;
+    top: 35%;
+    left: 50%;
+    transform: translateX(-50%);
+}
+#to-do-text:focus{
+    background-color: rgb(189, 39, 34);
 }
 #confirm-button {
     margin: 15px 0 0 15px;
