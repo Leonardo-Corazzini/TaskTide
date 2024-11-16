@@ -205,6 +205,7 @@ h1 {
     width: 50px;
     height: 50px;
     text-align: center;
+    transition: outline 0.2s;
 }
 
 .colorpicker {
@@ -215,15 +216,18 @@ h1 {
 
 .icon:hover {
     background-color: #44b4af;
+    outline: 3px solid rgb(255, 255, 255);
 
 }
 
 .icon.focus {
     background-color: #149e97;
     color: white;
-    outline: 3px solid rgb(254, 254, 255);
+    outline: 3px solid rgb(19, 19, 32);
 }
-
+.color-section > *:hover{
+    outline: 3px solid rgb(255, 255, 255);
+}
 .color-section>*.focus {
     outline: 3px solid rgb(19, 19, 32);
 }
@@ -299,10 +303,12 @@ h1 {
 
 .champagne-bg {
     background-color: #EEE0CB;
+    color: white;
 }
 
 .celadon-bg {
     background-color: #A7E8BD;
+    color: white;
 }
 
 .bluegray-bg {
@@ -322,6 +328,7 @@ h1 {
 
 .tangerine-bg {
     background-color: #D1913E;
+    color: white;
 }
 
 .scarlet-bg {
@@ -331,6 +338,7 @@ h1 {
 
 .mistyblue-bg {
     background-color: #C1C2D0;
+    color: white;
 }
 
 .orange-bg {
