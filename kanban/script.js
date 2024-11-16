@@ -9,9 +9,11 @@ const trashImg = document.querySelector('.trash-img')
 const closeBtn = document.querySelector('.closed-btn')
 const selectedIcon = document.querySelectorAll('.icon')
 const selectedColor = document.querySelectorAll('.color-section > *')
+const randomBgColor = document.querySelector('.random-bg')
 let icon = null
 let color = null
-
+let misteryColor = null
+const arrayColor = []
 
 
 for (let i = 0; i < selectedIcon.length;i++){
@@ -26,9 +28,15 @@ for (let i = 0; i < selectedIcon.length;i++){
 for (let i = 0; i < selectedColor.length;i++){
     let colorChecked = selectedColor[i]
 
-    colorChecked.addEventListener('click',function(){
+    colorChecked.addEventListener('click',function(event){
         
-        color = colorChecked.className
+        if (event.target === randomBgColor){
+            console.log('okokok')
+            misteryColor = `background-color: ${randomColor()}; color:${colorText()};`
+        } else {
+            color = colorChecked.className
+        }
+        
 
     })
 }
@@ -57,6 +65,8 @@ addForm.addEventListener('submit', function (event) {
         overlayContainer.classList.add('d-off')
         overlayContainer.classList.remove('overflow-h')
         const toDoEl = createCard('div', ['to-do-element', color], toDoText.value, icon, el => (el.draggable = true))
+    
+        toDoEl.style = misteryColor
         cardBody.appendChild(toDoEl)
     
         toDoEl.addEventListener('dragstart', dragStart)
@@ -64,6 +74,8 @@ addForm.addEventListener('submit', function (event) {
         toDoText.value = ''
         icon = null
         color = null
+        misteryColor = null
+        
     }
 
 })
@@ -164,6 +176,27 @@ function createCard(
 
     return el;
 }
+
+function randomColor(){
+    const num1 = getRandomInt(1,255)
+    const num2 = getRandomInt(1,255)
+    const num3 = getRandomInt(1,255)
+    arrayColor.push(num1,num2,num3)
+    let casualColor = `rgb(${num1},${num2},${num3})`
+    return casualColor
+}
+function colorText(){
+    let colorString 
+    if (arrayColor[0] >= 65 ||arrayColor[1] >= 70  ||arrayColor[2] >= 50){
+        colorString = 'white'
+    } else {
+        colorString = 'black'
+    }
+    return colorString
+}
+
+console.log(randomColor())
+console.log(colorText())
 
 function getRandomInt(min, max) {
     return Math.floor(Math.random() * (max - min)) + min;
