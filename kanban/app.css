@@ -146,14 +146,16 @@ h1 {
     justify-content:space-between;
     align-items: center;
     width: 50vw;
+    margin-top: 30px;
 }
 .icon{
     background-color: rgb(255, 255, 255);
-    font-size: 35px;
+    font-size: 25px;
     padding: 15px;
     border-radius: 5px;
     cursor: pointer;
-    border: solid 3px black;
+    margin-bottom: 40px;
+    outline: none;
 }
 .icon:hover{
     background-color: #44b4af;
@@ -162,22 +164,24 @@ h1 {
 .icon:focus{
     background-color: #149e97;
     color: white;
-    border: solid 3px white;
+    outline: 3px solid rgb(254, 254, 255);
 }
 #add-form {
     display: flex;
     align-items: center;
     flex-direction: column;
 }
+
+.form-title {
+    color: white;
+}
+
 #to-do-text{
     line-height: 30px;
     width: 50vw;
     border-radius: 14px;
     border: none;
-    position: absolute;
-    top: 35%;
-    left: 50%;
-    transform: translateX(-50%);
+    margin-bottom: 40px;
 }
 #to-do-text:focus{
     background-color: rgb(236, 236, 236);

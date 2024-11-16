@@ -83,11 +83,6 @@ trashImg.addEventListener('drop', function(event){
     console.log('sto eliminando');
 })
 
-
-if(toDoText === ''){
-    console.log('devi compilare questo campo');
-}
-
 // funzioni di drag and drop della task
 let dragItem = null
 
