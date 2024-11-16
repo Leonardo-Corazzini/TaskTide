@@ -13,7 +13,7 @@ const randomBgColor = document.querySelector('.random-bg')
 let icon = null
 let color = null
 let misteryColor = null
-const arrayColor = []
+let arrayColor = []
 
 
 for (let i = 0; i < selectedIcon.length;i++){
@@ -75,6 +75,7 @@ addForm.addEventListener('submit', function (event) {
         icon = null
         color = null
         misteryColor = null
+        arrayColor = []
         
     }
 
@@ -186,11 +187,13 @@ function randomColor(){
     return casualColor
 }
 function colorText(){
-    let colorString 
-    if (arrayColor[0] >= 65 ||arrayColor[1] >= 70  ||arrayColor[2] >= 50){
+    let colorString = 'black'
+    let r = arrayColor[0]
+    let g = arrayColor[1]
+    let b = arrayColor[2]
+    const luminosity = 0.2126 * r +  0.7152 * g + 0.0722 * b
+    if(luminosity > 128) {
         colorString = 'white'
-    } else {
-        colorString = 'black'
     }
     return colorString
 }
@@ -201,3 +204,4 @@ console.log(colorText())
 function getRandomInt(min, max) {
     return Math.floor(Math.random() * (max - min)) + min;
 }
+
