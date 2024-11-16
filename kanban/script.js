@@ -4,19 +4,35 @@ const addForm = document.getElementById('add-form')
 const confirmBtn = document.getElementById('confirm-button')
 const toDoText = document.getElementById('to-do-text')
 const cardBody = document.querySelector('.card-body')
-const cards = document.querySelectorAll('.card')
+const cards = document.querySelectorAll('.card-body')
 const trashImg = document.querySelector('.trash-img')
 const closeBtn = document.querySelector('.closed-btn')
 const selectedIcon = document.querySelectorAll('.icon')
+const selectedColor = document.querySelectorAll('.color-section > *')
 let icon = null
+let color = null
+
 
 
 for (let i = 0; i < selectedIcon.length;i++){
     let iconChekced = selectedIcon[i]
+
     iconChekced.addEventListener('click',function(){
+        
         icon = iconChekced.innerHTML
     })
 }
+
+for (let i = 0; i < selectedColor.length;i++){
+    let colorChecked = selectedColor[i]
+
+    colorChecked.addEventListener('click',function(){
+        
+        color = colorChecked.className
+
+    })
+}
+
 
 // ascolto bottone di aggiunta task
 addBtn.addEventListener('click', function () {
@@ -40,13 +56,14 @@ addForm.addEventListener('submit', function (event) {
     } else {
         overlayContainer.classList.add('d-off')
         overlayContainer.classList.remove('overflow-h')
-        const toDoEl = createCard('div', ['to-do-element'], toDoText.value, icon, el => (el.draggable = true))
+        const toDoEl = createCard('div', ['to-do-element', color], toDoText.value, icon, el => (el.draggable = true))
         cardBody.appendChild(toDoEl)
     
         toDoEl.addEventListener('dragstart', dragStart)
         toDoEl.addEventListener('dragend', dragEnd)
         toDoText.value = ''
         icon = null
+        color = null
     }
 
 })
@@ -116,10 +133,9 @@ function dragLeave() {
 
 function drop() {
     console.log('droppato');
-    this.appendChild(dragItem)
+    this.append(dragItem)
     
 }
-
 
 
 // utilities function
@@ -149,4 +165,6 @@ function createCard(
     return el;
 }
 
-
+function getRandomInt(min, max) {
+    return Math.floor(Math.random() * (max - min)) + min;
+}

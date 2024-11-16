@@ -83,7 +83,6 @@ h1 {
 }
 .card {
     text-align: center;
-    min-height: 500px;
     border-radius: 10px;
     background-color: white;
     padding: 10px;
@@ -140,7 +139,8 @@ h1 {
     opacity: 0;
     visibility: hidden;
 }
-.icon-section{
+.icon-section,
+.color-section{
     display: flex;
     flex-wrap:wrap;
     justify-content:space-between;
@@ -148,14 +148,18 @@ h1 {
     width: 50vw;
     margin-top: 30px;
 }
-.icon{
+.icon,
+.color-section > * {
     background-color: rgb(255, 255, 255);
     font-size: 25px;
-    padding: 15px;
+    padding: 10px;
     border-radius: 5px;
     cursor: pointer;
     margin-bottom: 40px;
     outline: none;
+    width: 50px;
+    height: 50px;
+    text-align: center;
 }
 .icon:hover{
     background-color: #44b4af;
@@ -184,7 +188,7 @@ h1 {
     margin-bottom: 40px;
 }
 #to-do-text:focus{
-    background-color: rgb(236, 236, 236);
+    outline: 3px solid  #44b4af;
 }
 
 #confirm-button {
@@ -224,6 +228,54 @@ h1 {
 }
 .d-none {
     display: none;
+}
+
+
+/* COLOR PALETTE */
+.card-body {
+    width: 100%;
+    min-height: 500px;
+} 
+
+.champagne-bg {
+    background-color: #EEE0CB;
+}
+
+.celadon-bg {
+    background-color: #A7E8BD;
+}
+
+.bluegray-bg {
+    background-color: #5885AF;
+    color: white;
+}
+
+.darkblue-bg {
+    background-color: #0C2D48;
+    color: white;
+}
+
+.bluegreen-bg {
+    background-color: #10564F;
+    color: white;
+}
+
+.tangerine-bg {
+    background-color: #D1913E;
+}
+
+.scarlet-bg {
+    background-color: #A92420;
+    color: white;
+}
+
+.mistyblue-bg {
+    background-color: #C1C2D0;
+}
+
+.orange-bg {
+    background-color: #FF8300;
+    color: white;
 }
 
 
