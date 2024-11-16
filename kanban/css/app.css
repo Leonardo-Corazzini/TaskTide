@@ -41,25 +41,53 @@ img {
     width: calc(100% / 4);
     padding: 15px;
 }
+
 body {
     font-family: "Funnel Display", sans-serif;
     background-color: rgb(232, 232, 232);
+    transition: background-color 1s;
+
 }
+
 /* header style */
 header {
     display: flex;
-    padding-left: 15px;
-    padding-top: 10px;
+    padding: 10px 15px;
     background-color: whitesmoke;
     box-shadow: #145C9E 2px 2px 200px 1px;
+    transition: background-color 1s, box-shadow 1s;
 }
+
 h1 {
     text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.356);
     line-height: 30px;
     padding-bottom: 15px;
     padding-left: 5px;
+    transition: background-color 1s, box-shadow 1s;
 
 }
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.dark-button {
+    padding: 15px;
+    background-color: white;
+    display: inline-block;
+    border: 2px solid black;
+    border-radius: 14px;
+    cursor: pointer;
+    color: rgb(0, 0, 0);
+    box-shadow: rgba(0, 0, 0, 0.297) 2px 2px 4px 1px;
+    transition: background-color 1s, box-shadow 1s;
+
+}
+
+
+
 /* main style */
 .add-button {
     margin: 20px 0 5px 15px;
@@ -71,38 +99,53 @@ h1 {
     cursor: pointer;
     color: white;
     box-shadow: rgba(0, 0, 0, 0.297) 2px 2px 4px 1px;
-       
+
 }
+
 .add-button:hover {
     background-color: #2373be;
 
 }
-.col h2 {
+
+.card-title{
     color: rgb(40, 39, 39);
     padding-top: 10px;
+    margin-bottom: 15px;
+    transition: color 1s;
 }
+
 .card {
     text-align: center;
     border-radius: 10px;
     background-color: white;
     padding: 10px;
     box-shadow: rgba(0, 0, 0, 0.297) 2px 2px 13px 5px;
+    transition: background-color 1s, box-shadow 1s border-radius 1s;
     
+
 }
+
+.card-body {
+    width: 100%;
+    min-height: 500px;
+}
+
 .to-do-element {
     cursor: pointer;
     border-radius: 7px;
     background-color: rgb(241, 241, 241);
     box-shadow: rgba(0, 0, 0, 0.297) 0px 0px 12px 1px;
-    margin: 15px;
+    margin: 0px 15px 15px;
     padding: 5px;
     font-weight: 200;
     font-size: 13px;
 }
+
 .to-do-element:hover {
     transform: scale(1.1);
     background-color: #83a4c2;
 }
+
 .trash {
     position: relative;
     width: 70px;
@@ -112,7 +155,7 @@ h1 {
 .trash img {
     position: absolute;
     margin-top: 3px;
-    
+
 }
 
 /* overlay style */
@@ -139,17 +182,19 @@ h1 {
     opacity: 0;
     visibility: hidden;
 }
+
 .icon-section,
-.color-section{
+.color-section {
     display: flex;
-    flex-wrap:wrap;
-    justify-content:space-between;
+    flex-wrap: wrap;
+    justify-content: space-between;
     align-items: center;
     width: 50vw;
     margin-top: 30px;
 }
+
 .icon,
-.color-section > * {
+.color-section>* {
     background-color: rgb(255, 255, 255);
     font-size: 25px;
     padding: 10px;
@@ -161,15 +206,28 @@ h1 {
     height: 50px;
     text-align: center;
 }
-.icon:hover{
-    background-color: #44b4af;
-    
+
+.colorpicker {
+    padding: 0px;
+    border: none;
+    border-radius: 5px;
 }
-.icon:focus{
+
+.icon:hover {
+    background-color: #44b4af;
+
+}
+
+.icon.focus {
     background-color: #149e97;
     color: white;
     outline: 3px solid rgb(254, 254, 255);
 }
+
+.color-section>*.focus {
+    outline: 3px solid rgb(19, 19, 32);
+}
+
 #add-form {
     display: flex;
     align-items: center;
@@ -180,15 +238,18 @@ h1 {
     color: white;
 }
 
-#to-do-text{
+#to-do-text {
     line-height: 30px;
+    font-size: 22px;
+    text-align: center;
     width: 50vw;
     border-radius: 14px;
     border: none;
     margin-bottom: 40px;
 }
-#to-do-text:focus{
-    outline: 3px solid  #44b4af;
+
+#to-do-text:focus {
+    outline: 3px solid #44b4af;
 }
 
 #confirm-button {
@@ -208,6 +269,7 @@ h1 {
 #confirm-button:hover {
     background-color: #44b4af;
 }
+
 .closed-btn {
     margin: 50px;
     font-size: 35px;
@@ -217,6 +279,7 @@ h1 {
     right: 50px;
     transition: transform 0.3s;
 }
+
 .closed-btn:hover {
     transform: scale(1.5);
     cursor: pointer;
@@ -226,16 +289,13 @@ h1 {
 .overflow-h {
     overflow: hidden;
 }
+
 .d-none {
     display: none;
 }
 
 
 /* COLOR PALETTE */
-.card-body {
-    width: 100%;
-    min-height: 500px;
-} 
 
 .champagne-bg {
     background-color: #EEE0CB;
@@ -280,17 +340,63 @@ h1 {
 
 
 @keyframes vibration {
-    0% { transform: translate(0, 0); }
-    25% { transform: translate(-2px, 2px); }
-    50% { transform: translate(2px, -2px); }
-    75% { transform: translate(-2px, -2px); }
-    100% { transform: translate(2px, 2px); }
-  }
-  
-  .vibration-el {
+    0% {
+        transform: translate(0, 0);
+    }
+
+    25% {
+        transform: translate(-2px, 2px);
+    }
+
+    50% {
+        transform: translate(2px, -2px);
+    }
+
+    75% {
+        transform: translate(-2px, -2px);
+    }
+
+    100% {
+        transform: translate(2px, 2px);
+    }
+}
+
+@keyframes vibrationBtn {
+    0% {
+        transform: translate(0, 0);
+        background-color: #A92420;
+    }
+
+    25% {
+        transform: translate(-8px, 2px);
+        background-color: #A92420;
+    }
+
+    50% {
+        transform: translate(2px, -8px);
+        background-color: #A92420;
+    }
+
+    75% {
+        transform: translate(-8px, -2px);
+        background-color: #A92420;
+    }
+
+    100% {
+        transform: translate(2px, 8px);
+        background-color: #A92420;
+    }
+}
+
+.vibration-el {
     animation: vibration 0.2s infinite;
-  }
-  
+}
+
+.vibration-btn {
+    animation: vibrationBtn 0.2s infinite;
+
+
+}
 
 /* media querriers */
 @media (max-width: 992px) {
@@ -311,8 +417,30 @@ h1 {
 
 }
 
+/* dark mode */
+.dark-mode {
+    background-color: rgb(25, 25, 25);
+}
 
-.tregiojs{
-    color: rgb(138, 67, 67)
-    ;
+.dark-mode header {
+    background-color: rgb(16, 16, 16);
+    box-shadow: #93c8fa 2px 2px 200px 1px;
+}
+
+.dark-mode h1 {
+    color: white;
+}
+
+.dark-mode .dark-button {
+    background-color: rgb(16, 16, 16);
+    border: 2px solid rgb(255, 255, 255);
+    color: rgb(255, 255, 255);
+}
+.dark-mode .card{
+    background-color:rgb(65, 65, 65) ;
+    border-radius: 2px;
+    
+}
+.dark-mode .card-title{
+    color:white
 }

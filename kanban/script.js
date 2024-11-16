@@ -9,49 +9,58 @@ const trashImg = document.querySelector('.trash-img')
 const closeBtn = document.querySelector('.closed-btn')
 const selectedIcon = document.querySelectorAll('.icon')
 const selectedColor = document.querySelectorAll('.color-section > *')
+// const colorPicker = document.querySelector('.color-picker')
 const randomBgColor = document.querySelector('.random-bg')
+const questionMark = document.querySelector('.fa-question')
 let icon = null
 let color = null
 let misteryColor = null
 let arrayColor = []
+const darkBtn = document.querySelector('.dark-button')
 
 
-for (let i = 0; i < selectedIcon.length;i++){
-    let iconChekced = selectedIcon[i]
-
-    iconChekced.addEventListener('click',function(){
-        
-        icon = iconChekced.innerHTML
-    })
-}
-
-for (let i = 0; i < selectedColor.length;i++){
-    let colorChecked = selectedColor[i]
-
-    colorChecked.addEventListener('click',function(event){
-        
-        if (event.target === randomBgColor){
-            console.log('okokok')
-            misteryColor = `background-color: ${randomColor()}; color:${colorText()};`
-        } else {
-            color = colorChecked.className
-        }
-        
-
-    })
-}
-
-
+// pulsante per attivARE DARKMODE
+darkBtn.addEventListener('click', function(){
+   document.body.classList.toggle('dark-mode')
+})
 // ascolto bottone di aggiunta task
 addBtn.addEventListener('click', function () {
     overlayContainer.classList.remove('d-off')
     overlayContainer.classList.add('overflow-h')
 })
-// chiusura overlay
-closeBtn.addEventListener('click', function(event){
-        overlayContainer.classList.add('d-off')
-        overlayContainer.classList.remove('overflow-h')
+// aggiunto evento di click su ogni icona
+for (let i = 0; i < selectedIcon.length;i++){
+    let iconChekced = selectedIcon[i]
 
+    iconChekced.addEventListener('click',function(){
+        removeIconFocus()
+        iconChekced.classList.add('focus')
+        icon = iconChekced.innerHTML
+    })
+}
+// aggiunto evento di click su ogni colore
+for (let i = 0; i < selectedColor.length;i++){
+    let colorChecked = selectedColor[i]
+    colorChecked.addEventListener('click',function(event){
+        removeColorFocus()
+        if (event.target === randomBgColor || event.target === questionMark){
+            misteryColor = `background-color: ${randomColor()}; color:${colorText()};`
+            colorChecked.classList.add('focus')
+        } else {
+            color = colorChecked.className
+            colorChecked.classList.add('focus')
+        }
+        
+
+    })
+}
+// rimozione focus sul click dell'overlay ma fuori dal form
+overlayContainer.addEventListener('click',function(event){
+    if (event.target === overlayContainer){
+        removeIconFocus()
+        removeColorFocus()
+    }
+       
 })
 // inserimento task da parte dell'utente
 
@@ -61,7 +70,11 @@ addForm.addEventListener('submit', function (event) {
     if(toDoText.value === ''){
         toDoText.classList.add('vibration-el')
         setTimeout(() => toDoText.classList.remove('vibration-el'), 500)
+        confirmBtn.classList.add('vibration-btn')
+        setTimeout(() => confirmBtn.classList.remove('vibration-btn'), 500)
     } else {
+        removeIconFocus()
+        removeColorFocus()
         overlayContainer.classList.add('d-off')
         overlayContainer.classList.remove('overflow-h')
         const toDoEl = createCard('div', ['to-do-element', color], toDoText.value, icon, el => (el.draggable = true))
@@ -80,6 +93,17 @@ addForm.addEventListener('submit', function (event) {
     }
 
 })
+
+
+// chiusura overlay
+closeBtn.addEventListener('click', function(event){
+        overlayContainer.classList.add('d-off')
+        overlayContainer.classList.remove('overflow-h')
+        removeIconFocus()
+        removeColorFocus()
+
+})
+
 
 
 // aggiunto eventi di drag and drop alle card
@@ -150,6 +174,20 @@ function drop() {
     
 }
 
+// funzione rimozione focus
+
+function removeIconFocus(){
+    for (let i = 0; i < selectedIcon.length;i++){
+        let iconNoChekced = selectedIcon[i]
+        iconNoChekced.classList.remove('focus')
+    }
+}
+function removeColorFocus(){
+    for (let i = 0; i < selectedColor.length;i++){
+        let colorNoChecked = selectedColor[i]
+        colorNoChecked.classList.remove('focus')
+    }
+}
 
 // utilities function
 function createCard(
@@ -198,8 +236,7 @@ function colorText(){
     return colorString
 }
 
-console.log(randomColor())
-console.log(colorText())
+
 
 function getRandomInt(min, max) {
     return Math.floor(Math.random() * (max - min)) + min;
