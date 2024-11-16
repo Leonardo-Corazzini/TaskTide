@@ -30,17 +30,25 @@ closeBtn.addEventListener('click', function(event){
 
 })
 // inserimento task da parte dell'utente
+
+
 addForm.addEventListener('submit', function (event) {
     event.preventDefault()
-    overlayContainer.classList.add('d-off')
-    overlayContainer.classList.remove('overflow-h')
-    const toDoEl = createCard('div', ['to-do-element'], toDoText.value, icon, el => (el.draggable = true))
-    cardBody.appendChild(toDoEl)
+    if(toDoText.value === ''){
+        toDoText.classList.add('vibration-el')
+        setTimeout(() => toDoText.classList.remove('vibration-el'), 500)
+    } else {
+        overlayContainer.classList.add('d-off')
+        overlayContainer.classList.remove('overflow-h')
+        const toDoEl = createCard('div', ['to-do-element'], toDoText.value, icon, el => (el.draggable = true))
+        cardBody.appendChild(toDoEl)
+    
+        toDoEl.addEventListener('dragstart', dragStart)
+        toDoEl.addEventListener('dragend', dragEnd)
+        toDoText.value = ''
+        icon = null
+    }
 
-    toDoEl.addEventListener('dragstart', dragStart)
-    toDoEl.addEventListener('dragend', dragEnd)
-    toDoText.value = ''
-    icon = null
 })
 
 
@@ -75,6 +83,10 @@ trashImg.addEventListener('drop', function(event){
     console.log('sto eliminando');
 })
 
+
+if(toDoText === ''){
+    console.log('devi compilare questo campo');
+}
 
 // funzioni di drag and drop della task
 let dragItem = null
