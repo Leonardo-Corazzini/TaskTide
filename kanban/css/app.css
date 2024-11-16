@@ -112,6 +112,7 @@ h1 {
     padding-top: 10px;
     margin-bottom: 15px;
     transition: color 1s;
+    user-select: none;
 }
 
 .card {
@@ -303,12 +304,12 @@ h1 {
 
 .champagne-bg {
     background-color: #EEE0CB;
-    color: white;
+    
 }
 
 .celadon-bg {
     background-color: #A7E8BD;
-    color: white;
+    
 }
 
 .bluegray-bg {
@@ -328,7 +329,7 @@ h1 {
 
 .tangerine-bg {
     background-color: #D1913E;
-    color: white;
+    
 }
 
 .scarlet-bg {
@@ -338,7 +339,7 @@ h1 {
 
 .mistyblue-bg {
     background-color: #C1C2D0;
-    color: white;
+    
 }
 
 .orange-bg {
