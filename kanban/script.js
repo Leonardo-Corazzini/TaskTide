@@ -133,7 +133,11 @@ deleteAllBtn.addEventListener('click',function(){
     if(toDoEl){
         const deleEl = document.querySelectorAll('.to-do-element')
         for(let i = 0; i < deleEl.length;i++){
-            deleEl[i].remove()
+            deleEl[i].classList.add('exit')
+            setTimeout(() => {
+                deleEl[i].remove()
+            }, 1000);
+            
         }
         
     }
