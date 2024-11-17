@@ -1,7 +1,8 @@
 // bottoni principali
 const darkBtn = document.querySelector('.dark-button')
 const addBtn = document.querySelector('.add-button')
-const deleteMessage = document.querySelector('.delete-section')
+const deleteMessage = document.querySelector('.overlay-transparent-undo')
+const deleteModule = document.querySelector('.delete-section')
 const undoDelete = document.querySelector('.no')
 const deleteAllBtn = document.querySelector('.yes')
 //elementi della sezione overlay con form aggiunta testo icona e colori
@@ -47,12 +48,12 @@ addBtn.addEventListener('click', function () {
 })
 // aggiunto evento di click su ogni icona
 for (let i = 0; i < selectedIcon.length;i++){
-    let iconChekced = selectedIcon[i]
+    let iconChecked = selectedIcon[i]
 
-    iconChekced.addEventListener('click',function(){
+    iconChecked.addEventListener('click',function(){
         removeIconFocus()
-        iconChekced.classList.add('focus')
-        icon = iconChekced.innerHTML
+        iconChecked.classList.add('focus')
+        icon = iconChecked.innerHTML
     })
 }
 // aggiunto evento di click su ogni colore
@@ -122,6 +123,7 @@ closeBtn.addEventListener('click', function(event){
 // rimozione di tutte task al cliccare del cestino
 trashImg.addEventListener('click',function(){
     deleteMessage.classList.remove('d-none')
+    deleteModule.classList.add('popup')
 })
 undoDelete.addEventListener('click',function(){
     deleteMessage.classList.add('d-none')
@@ -137,6 +139,14 @@ deleteAllBtn.addEventListener('click',function(){
     }
 })
 
+deleteMessage.addEventListener('click', function(event){
+    if(event.target === deleteMessage) {
+        deleteModule.classList.remove('popup')
+        deleteModule.classList.add('vibration-undo')
+        setTimeout(() => deleteModule.classList.remove('vibration-undo'), 500)
+    }
+
+})
 
 
 // -----------------------------------EVENTI DRAG AND DROP-----------------------------------------------------
@@ -227,8 +237,8 @@ trashImg.addEventListener('drop', function(event){
 
 function removeIconFocus(){
     for (let i = 0; i < selectedIcon.length;i++){
-        let iconNoChekced = selectedIcon[i]
-        iconNoChekced.classList.remove('focus')
+        let iconNoChecked = selectedIcon[i]
+        iconNoChecked.classList.remove('focus')
     }
 }
 function removeColorFocus(){
