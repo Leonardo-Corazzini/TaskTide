@@ -347,7 +347,7 @@ h1 {
     color: white;
 }
 
-
+/* animazioni */
 @keyframes vibration {
     0% {
         transform: translate(0, 0);
@@ -407,24 +407,6 @@ h1 {
 
 }
 
-/* media querriers */
-@media (max-width: 992px) {
-    .col {
-        width: calc(100% / 2);
-        padding: 15px;
-    }
-
-
-}
-
-@media (max-width: 576px) {
-    .col {
-        width: 100%;
-        padding: 15px;
-    }
-
-
-}
 
 /* dark mode */
 .dark-mode {
@@ -452,4 +434,23 @@ h1 {
 }
 .dark-mode .card-title{
     color:white
+}
+
+/* media querriers */
+@media (max-width: 992px) {
+    .col {
+        width: calc(100% / 2);
+        padding: 15px;
+    }
+
+
+}
+
+@media (max-width: 576px) {
+    .col {
+        width: 100%;
+        padding: 15px;
+    }
+
+
 }

@@ -1,12 +1,10 @@
+// bottoni principali
+const darkBtn = document.querySelector('.dark-button')
 const addBtn = document.querySelector('.add-button')
+//elementi della sezione overlay con form aggiunta testo icona e colori
 const overlayContainer = document.querySelector('.overlay-container')
 const addForm = document.getElementById('add-form')
-const confirmBtn = document.getElementById('confirm-button')
 const toDoText = document.getElementById('to-do-text')
-const cardBody = document.querySelector('.card-body')
-const cards = document.querySelectorAll('.card-body')
-const trashImg = document.querySelector('.trash-img')
-const closeBtn = document.querySelector('.closed-btn')
 const selectedIcon = document.querySelectorAll('.icon')
 const selectedColor = document.querySelectorAll('.color-section > *')
 // const colorPicker = document.querySelector('.color-picker')
@@ -16,9 +14,18 @@ let icon = null
 let color = null
 let misteryColor = null
 let arrayColor = []
-const darkBtn = document.querySelector('.dark-button')
+const confirmBtn = document.getElementById('confirm-button')
+const closeBtn = document.querySelector('.closed-btn')
+// elementi per la gestione del drag and drop
+const cardBody = document.querySelector('.card-body')
+const cards = document.querySelectorAll('.card-body')
+const trashImg = document.querySelector('.trash-img')
 
 
+
+
+
+// -----------------------------------ASCOLTO DEGLI EVENTI-----------------------------------------------------
 // pulsante per attivARE DARKMODE
 darkBtn.addEventListener('click', function(){
    document.body.classList.toggle('dark-mode')
@@ -63,8 +70,6 @@ overlayContainer.addEventListener('click',function(event){
        
 })
 // inserimento task da parte dell'utente
-
-
 addForm.addEventListener('submit', function (event) {
     event.preventDefault()
     if(toDoText.value === ''){
@@ -93,8 +98,6 @@ addForm.addEventListener('submit', function (event) {
     }
 
 })
-
-
 // chiusura overlay
 closeBtn.addEventListener('click', function(event){
         overlayContainer.classList.add('d-off')
@@ -106,6 +109,10 @@ closeBtn.addEventListener('click', function(event){
 
 
 
+
+
+// -----------------------------------EVENTI DRAG AND DROP-----------------------------------------------------
+
 // aggiunto eventi di drag and drop alle card
 cards.forEach((el) => {
     el.addEventListener('dragover', dragOver)
@@ -113,30 +120,6 @@ cards.forEach((el) => {
     el.addEventListener('dragleave', dragLeave)
     el.addEventListener('drop', drop)
 })
-// aggiunto eventi di drag and drop al cestino
-trashImg.addEventListener('dragenter', function(event){
-    trashImg.src = "../img/cestino-aperto.png"
-    
-    console.log('entrato');
-})
-
-trashImg.addEventListener('dragleave', function(event){
-    trashImg.src = "../img/cestino-chiuso.png"
-    
-    console.log('uscito');
-})
-
-trashImg.addEventListener('dragover', function(event){
-    event.preventDefault()
-
-})
-
-trashImg.addEventListener('drop', function(event){
-    trashImg.src = "../img/cestino-chiuso.png"
-    dragItem.remove()
-    console.log('sto eliminando');
-})
-
 // funzioni di drag and drop della task
 let dragItem = null
 
@@ -173,7 +156,32 @@ function drop() {
     this.append(dragItem)
     
 }
+// aggiunto eventi di drag and drop al cestino
+trashImg.addEventListener('dragenter', function(event){
+    trashImg.src = "../img/cestino-aperto.png"
+    
+    console.log('entrato');
+})
 
+trashImg.addEventListener('dragleave', function(event){
+    trashImg.src = "../img/cestino-chiuso.png"
+    
+    console.log('uscito');
+})
+
+trashImg.addEventListener('dragover', function(event){
+    event.preventDefault()
+
+})
+
+trashImg.addEventListener('drop', function(event){
+    trashImg.src = "../img/cestino-chiuso.png"
+    dragItem.remove()
+    console.log('sto eliminando');
+})
+
+
+// -----------------------------------FUNZIONI---------------------------------------------------------------
 // funzione rimozione focus
 
 function removeIconFocus(){
