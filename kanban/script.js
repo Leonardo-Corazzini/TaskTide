@@ -1,6 +1,9 @@
 // bottoni principali
 const darkBtn = document.querySelector('.dark-button')
 const addBtn = document.querySelector('.add-button')
+const deleteMessage = document.querySelector('.delete-section')
+const undoDelete = document.querySelector('.no')
+const deleteAllBtn = document.querySelector('.yes')
 //elementi della sezione overlay con form aggiunta testo icona e colori
 const overlayContainer = document.querySelector('.overlay-container')
 const addForm = document.getElementById('add-form')
@@ -10,10 +13,12 @@ const selectedColor = document.querySelectorAll('.color-section > *')
 // const colorPicker = document.querySelector('.color-picker')
 const randomBgColor = document.querySelector('.random-bg')
 const questionMark = document.querySelector('.fa-question')
+let toDoEl
 let icon = null
 let color = null
 let misteryColor = null
 let arrayColor = []
+const undoBtn = document.getElementById('undo-button')
 const confirmBtn = document.getElementById('confirm-button')
 const closeBtn = document.querySelector('.closed-btn')
 // elementi per la gestione del drag and drop
@@ -29,6 +34,11 @@ const trashImg = document.querySelector('.trash-img')
 // pulsante per attivARE DARKMODE
 darkBtn.addEventListener('click', function(){
    document.body.classList.toggle('dark-mode')
+   if(document.body.className === 'dark-mode'){
+        trashImg.src = "../img/cestino-darkmode-chiuso.png"
+    }else{
+        trashImg.src = "../img/cestino-chiuso.png" 
+    }
 })
 // ascolto bottone di aggiunta task
 addBtn.addEventListener('click', function () {
@@ -61,13 +71,16 @@ for (let i = 0; i < selectedColor.length;i++){
 
     })
 }
-// rimozione focus sul click dell'overlay ma fuori dal form
-overlayContainer.addEventListener('click',function(event){
-    if (event.target === overlayContainer){
-        removeIconFocus()
-        removeColorFocus()
-    }
-       
+// pulsante annulla
+undoBtn.addEventListener('click', function(event){
+    event.preventDefault()
+    removeIconFocus()
+    removeColorFocus()
+    toDoText.value = ''
+    icon = null
+    color = null
+    misteryColor = null
+    arrayColor = []
 })
 // inserimento task da parte dell'utente
 addForm.addEventListener('submit', function (event) {
@@ -82,7 +95,7 @@ addForm.addEventListener('submit', function (event) {
         removeColorFocus()
         overlayContainer.classList.add('d-off')
         overlayContainer.classList.remove('overflow-h')
-        const toDoEl = createCard('div', ['to-do-element', color], toDoText.value, icon, el => (el.draggable = true))
+        toDoEl = createCard('div', ['to-do-element', color], toDoText.value, icon, el => (el.draggable = true))
     
         toDoEl.style = misteryColor
         cardBody.appendChild(toDoEl)
@@ -106,8 +119,23 @@ closeBtn.addEventListener('click', function(event){
         removeColorFocus()
 
 })
-
-
+// rimozione di tutte task al cliccare del cestino
+trashImg.addEventListener('click',function(){
+    deleteMessage.classList.remove('d-none')
+})
+undoDelete.addEventListener('click',function(){
+    deleteMessage.classList.add('d-none')
+})
+deleteAllBtn.addEventListener('click',function(){
+    deleteMessage.classList.add('d-none')
+    if(toDoEl){
+        const deleEl = document.querySelectorAll('.to-do-element')
+        for(let i = 0; i < deleEl.length;i++){
+            deleEl[i].remove()
+        }
+        
+    }
+})
 
 
 
@@ -158,13 +186,22 @@ function drop() {
 }
 // aggiunto eventi di drag and drop al cestino
 trashImg.addEventListener('dragenter', function(event){
-    trashImg.src = "../img/cestino-aperto.png"
+    if(document.body.className === 'dark-mode'){
+        trashImg.src = "../img/cestino-darkmode-aperto.png"
+    } else {
+        trashImg.src = "../img/cestino-aperto.png" 
+    }
+    
     
     console.log('entrato');
 })
 
 trashImg.addEventListener('dragleave', function(event){
-    trashImg.src = "../img/cestino-chiuso.png"
+    if(document.body.className === 'dark-mode'){
+        trashImg.src = "../img/cestino-darkmode-chiuso.png"
+    } else {
+        trashImg.src = "../img/cestino-chiuso.png" 
+    }
     
     console.log('uscito');
 })
@@ -175,7 +212,11 @@ trashImg.addEventListener('dragover', function(event){
 })
 
 trashImg.addEventListener('drop', function(event){
-    trashImg.src = "../img/cestino-chiuso.png"
+    if(document.body.className === 'dark-mode'){
+        trashImg.src = "../img/cestino-darkmode-chiuso.png"
+    } else {
+        trashImg.src = "../img/cestino-chiuso.png" 
+    }
     dragItem.remove()
     console.log('sto eliminando');
 })

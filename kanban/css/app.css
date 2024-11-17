@@ -60,9 +60,7 @@ header {
 
 h1 {
     text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.356);
-    line-height: 30px;
-    padding-bottom: 15px;
-    padding-left: 5px;
+    padding: 0px 0px 0px 5px;
     transition: background-color 1s, box-shadow 1s;
 
 }
@@ -70,7 +68,7 @@ h1 {
 .navbar {
     display: flex;
     justify-content: space-between;
-    align-items: center;
+    align-items: center
 }
 
 .dark-button {
@@ -99,6 +97,7 @@ h1 {
     cursor: pointer;
     color: white;
     box-shadow: rgba(0, 0, 0, 0.297) 2px 2px 4px 1px;
+    transition: background-color 1s;
 
 }
 
@@ -149,14 +148,25 @@ h1 {
 
 .trash {
     position: relative;
-    width: 70px;
+    width: 60px;
     display: flex;
 }
 
 .trash img {
     position: absolute;
-    margin-top: 3px;
+    left: 15px;
+    transition: transform 0.3s;
+    cursor: pointer;
 
+}
+.trash img:hover{
+    transform: scale(1.2);
+}
+.delete-section{
+    position: absolute;
+    background-color: #A7E8BD;
+    top: 50%;
+    left: 50%;
 }
 
 /* overlay style */
@@ -175,7 +185,7 @@ h1 {
     justify-content: center;
     visibility: visible;
     opacity: 1;
-    transition: opacity 1s ease, visibility 0.3s ease;
+    transition: opacity 1s ease, visibility 0.3s ease , background-color 1s;
     user-select: none;
 }
 
@@ -256,7 +266,21 @@ h1 {
 #to-do-text:focus {
     outline: 3px solid #44b4af;
 }
-
+#undo-button{
+    margin: 15px 0 0 15px;
+    padding: 7px 10px;
+    background-color: #ffffff;
+    display: inline-block;
+    border-radius: 14px;
+    border: none;
+    line-height: 20px;
+    cursor: pointer;
+    box-shadow: rgba(0, 0, 0, 0.297) 2px 2px 4px 1px;
+    font-size: 16px;
+}
+#undo-button:hover{
+    background-color: #dfdfdf
+}
 #confirm-button {
     margin: 15px 0 0 15px;
     padding: 7px 10px;
@@ -283,11 +307,11 @@ h1 {
     top: 50px;
     right: 50px;
     transition: transform 0.3s;
+    cursor: pointer;
 }
 
 .closed-btn:hover {
     transform: scale(1.5);
-    cursor: pointer;
 }
 
 /* utilities class */
@@ -427,6 +451,9 @@ h1 {
     border: 2px solid rgb(255, 255, 255);
     color: rgb(255, 255, 255);
 }
+.dark-mode .dark-button:hover{
+    background-color: rgb(58, 57, 57);
+}
 .dark-mode .card{
     background-color:rgb(65, 65, 65) ;
     border-radius: 2px;
@@ -435,7 +462,35 @@ h1 {
 .dark-mode .card-title{
     color:white
 }
+.dark-mode .add-button{
+    background-color:rgb(16, 16, 16) ;
+}
+.dark-mode .add-button:hover{
+    background-color: rgb(58, 57, 57);
+}
+.dark-mode .trash img{
+    opacity: 1;
+}
+.dark-mode .overlay-container{
+    background-color:  rgba(16, 16, 16, 0.897);
 
+}
+.dark-mode .color-section>*.focus,
+.dark-mode .icon.focus{
+    outline: 3px solid #145C9E;
+}
+.dark-mode .icon.focus{
+    background-color:#5298da;
+}
+.dark-mode .icon:hover{
+    background-color:#2373be;
+}
+.dark-mode #confirm-button{
+    background-color:#145C9E;
+}
+.dark-mode #confirm-button:hover{
+    background-color:#2373be;
+}
 /* media querriers */
 @media (max-width: 992px) {
     .col {
