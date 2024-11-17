@@ -586,7 +586,22 @@ h1 {
 .dark-mode #confirm-button:hover{
     background-color:#2373be;
 }
+.dark-mode .delete-section{
+    background-color:rgb(25, 25, 25) ;
+}
 /* media querriers */
+@media (max-width: 2000px) {
+    .container {
+        max-width: 1024px;
+        margin: 0 auto;
+    }
+    .card-body {
+        width: 100%;
+        min-height: 500px;
+    }
+
+}
+
 @media (max-width: 992px) {
     .col {
         width: calc(100% / 2);
