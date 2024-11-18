@@ -19,6 +19,7 @@
 
     <div class="container">
         <div class="add-button">Aggiungi <i class="fa-solid fa-plus"></i></div>
+        <div class="modify-button">Modifica <i class="fa-solid fa-pen-to-square"></i></div>
     </div>
     <main>
         <div class="container">
@@ -75,14 +76,18 @@
     </main>
 
     <div class="overlay-container d-off">
-        
-        <div class="form-title"><h2>Scrivi la tua task:</h2></div>
 
-        <form action="" method="get" id="add-form"> 
+        <div class="form-title">
+            <h2>Scrivi la tua task:</h2>
+        </div>
+
+        <form action="" method="get" id="add-form">
 
             <input id="to-do-text" type="text">
 
-            <div class="form-title"><h2>Scegli l'icona:</h2></div>
+            <div class="form-title">
+                <h2>Scegli l'icona:</h2>
+            </div>
 
             <div class="icon-section">
                 <div class="icon" tabindex="0">
@@ -117,7 +122,9 @@
                 </div>
             </div>
 
-            <div class="form-title"><h2>Scegli un colore:</h2></div>
+            <div class="form-title">
+                <h2>Scegli un colore:</h2>
+            </div>
             <div class="color-section">
 
                 <div class="champagne-bg" tabindex="0">
@@ -168,6 +175,56 @@
                 <button class="yes">Elimina</button>
             </div>
         </div>
+    </div>
+
+    <div class="modify-overlay d-off">
+        <div class="preview-col">
+
+            <div class="col">
+                <div class="card">
+                    <div class="preview-card-title">
+                        <p>In Coda</p>
+                        <i class="fa-solid fa-pencil"></i>
+                    </div>                   
+                    <input type="text" placeholder="In Coda" class="d-none">
+                    <div class="preview-undo-btn"><i class="fa-solid fa-circle-xmark"></i></div>
+                </div>
+            </div>
+
+
+
+            <div class="col">
+                <div class="card">
+                    <h3>In Coda</h3>
+                    <input type="text" placeholder="In Coda" class="d-none">
+                    <div><i class="fa-solid fa-pencil"></i></div>
+                    <div><i class="fa-regular fa-circle-xmark"></i></div>
+                </div>
+            </div>
+
+            <div class="col">
+                <div class="card">
+                    <h3>In Coda</h3>
+                    <input type="text" placeholder="In Coda" class="d-none">
+                    <div><i class="fa-solid fa-pencil"></i></div>
+                    <div><i class="fa-regular fa-circle-xmark"></i></div>
+                </div>
+            </div>
+
+            <div class="col">
+                <div class="card">
+                    <h3>In Coda</h3>
+                    <input type="text" placeholder="In Coda" class="d-none">
+                    <div><i class="fa-solid fa-pencil"></i></div>
+                    <div><i class="fa-regular fa-circle-xmark"></i></div>
+                </div>
+            </div>
+    
+        </div>
+
+
+
+        <i class="fa-regular fa-circle-xmark closed-btn"></i>
     </div>
 
 

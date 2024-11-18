@@ -5,8 +5,10 @@ const deleteMessage = document.querySelector('.overlay-transparent-undo')
 const deleteModule = document.querySelector('.delete-section')
 const undoDelete = document.querySelector('.no')
 const deleteAllBtn = document.querySelector('.yes')
+const modBtn = document.querySelector('.modify-button')
 //elementi della sezione overlay con form aggiunta testo icona e colori
 const overlayContainer = document.querySelector('.overlay-container')
+const modOverlayContainer = document.querySelector('.modify-overlay')
 const addForm = document.getElementById('add-form')
 const toDoText = document.getElementById('to-do-text')
 const selectedIcon = document.querySelectorAll('.icon')
@@ -22,6 +24,7 @@ let arrayColor = []
 const undoBtn = document.getElementById('undo-button')
 const confirmBtn = document.getElementById('confirm-button')
 const closeBtn = document.querySelector('.closed-btn')
+const closeBtn2 = document.querySelector('.modify-overlay .closed-btn')
 // elementi per la gestione del drag and drop
 const cardBody = document.querySelector('.card-body')
 const cards = document.querySelectorAll('.card-body')
@@ -112,14 +115,24 @@ addForm.addEventListener('submit', function (event) {
     }
 
 })
+
+//modifica delle colonne
+modBtn.addEventListener('click', function () {
+    modOverlayContainer.classList.remove('d-off')
+    modOverlayContainer.classList.add('overflow-h')
+})
+
 // chiusura overlay
 closeBtn.addEventListener('click', function(event){
         overlayContainer.classList.add('d-off')
         overlayContainer.classList.remove('overflow-h')
-        // removeIconFocus()
-        // removeColorFocus()
-
 })
+
+closeBtn2.addEventListener('click', function(event){
+    modOverlayContainer.classList.add('d-off')
+    modOverlayContainer.classList.remove('overflow-h')
+})
+
 // rimozione di tutte task al cliccare del cestino
 trashImg.addEventListener('click',function(){
     deleteMessage.classList.remove('d-none')

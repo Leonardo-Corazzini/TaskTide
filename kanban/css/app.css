@@ -91,7 +91,8 @@ h1 {
 
 
 /* main style */
-.add-button {
+.add-button,
+.modify-button {
     margin: 20px 0 5px 15px;
     padding: 7px 10px;
     background-color: #145C9E;
@@ -105,10 +106,13 @@ h1 {
 
 }
 
-.add-button:hover {
+.add-button:hover,
+.modify-button:hover {
     background-color: #2373be;
 
 }
+
+
 
 .card-title{
     color: rgb(40, 39, 39);
@@ -162,7 +166,7 @@ h1 {
 
 }
 .trash img:hover{
-    transform: scale(1.2);
+    transform: scale(1.05);
 }
 /* DELETE SECTION */
 
@@ -367,6 +371,60 @@ h1 {
     transform: scale(1.5);
 }
 
+
+/* MODIFY SECTION */
+
+.d-off.modify-overlay{
+    opacity: 0;
+    visibility: hidden;
+}
+
+.modify-overlay {
+    height: 100vh;
+    width: 100%;
+    background-color: #145b9eec;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    row-gap: 35px;
+    justify-content: center;
+    visibility: visible;
+    opacity: 1;
+    transition: opacity 1s ease, visibility 0.3s ease , background-color 1s;
+    user-select: none;
+}
+
+.preview-col {
+    display: flex;
+    flex-wrap: wrap;
+    width: 70vw;
+    min-height: 500px;
+    background-color: #A7E8BD;
+    padding: 20px;
+}
+.preview-col .card {
+    height: 100%;
+    position: relative;
+}
+
+.preview-card-title{
+    display: flex;
+    justify-content: center;
+    gap: 5px;
+    border: solid 1px black;
+}
+.preview-undo-btn {
+    position: absolute;
+    top: -6px;
+    right: -6px;
+    z-index: 1;
+    background-color: #A92420;
+    border-radius: 999px;
+}
 /* utilities class */
 .overflow-h {
     overflow: hidden;
@@ -590,6 +648,8 @@ h1 {
     animation: exit 1s ease 0s 1 normal forwards;
 }
 
+
+
 /* dark mode */
 .dark-mode {
     background-color: rgb(25, 25, 25);
@@ -620,10 +680,12 @@ h1 {
 .dark-mode .card-title{
     color:white
 }
-.dark-mode .add-button{
+.dark-mode .add-button,
+.dark-mode .modify-button{
     background-color:rgb(16, 16, 16) ;
 }
-.dark-mode .add-button:hover{
+.dark-mode .add-button:hover,
+.dark-mode .modify-button:hover{
     background-color: rgb(58, 57, 57);
 }
 .dark-mode .trash img{
