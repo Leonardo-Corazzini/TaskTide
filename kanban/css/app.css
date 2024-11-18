@@ -416,14 +416,14 @@ h1 {
     justify-content: center;
     gap: 5px;
     border: solid 1px black;
+    cursor: pointer;
 }
 .preview-undo-btn {
     position: absolute;
     top: -6px;
     right: -6px;
     z-index: 1;
-    background-color: #A92420;
-    border-radius: 999px;
+    cursor: pointer;
 }
 /* utilities class */
 .overflow-h {

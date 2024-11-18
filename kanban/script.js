@@ -6,6 +6,9 @@ const deleteModule = document.querySelector('.delete-section')
 const undoDelete = document.querySelector('.no')
 const deleteAllBtn = document.querySelector('.yes')
 const modBtn = document.querySelector('.modify-button')
+const renameColBtn = document.querySelectorAll('.preview-card-title')
+const deleteColBtn = document.querySelectorAll('.preview-undo-btn')
+const renameColText = document.querySelectorAll('.rename-col')
 //elementi della sezione overlay con form aggiunta testo icona e colori
 const overlayContainer = document.querySelector('.overlay-container')
 const modOverlayContainer = document.querySelector('.modify-overlay')
@@ -121,6 +124,15 @@ modBtn.addEventListener('click', function () {
     modOverlayContainer.classList.remove('d-off')
     modOverlayContainer.classList.add('overflow-h')
 })
+
+for (let i = 0; i < renameColBtn.length; i++) {
+    renameColBtn[i].addEventListener('click', function(event){
+        // console.log(event.target.closest('.d-none'));
+    })
+    
+}
+
+
 
 // chiusura overlay
 closeBtn.addEventListener('click', function(event){
