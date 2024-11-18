@@ -6,6 +6,7 @@ const deleteModule = document.querySelector('.delete-section')
 const undoDelete = document.querySelector('.no')
 const deleteAllBtn = document.querySelector('.yes')
 const modBtn = document.querySelector('.modify-button')
+const previewCard = document.querySelectorAll('.preview-col .col')
 const renameColBtn = document.querySelectorAll('.preview-card-title')
 const deleteColBtn = document.querySelectorAll('.preview-undo-btn')
 const renameColText = document.querySelectorAll('.rename-col')
@@ -125,13 +126,39 @@ modBtn.addEventListener('click', function () {
     modOverlayContainer.classList.add('overflow-h')
 })
 
-for (let i = 0; i < renameColBtn.length; i++) {
-    renameColBtn[i].addEventListener('click', function(event){
-        // console.log(event.target.closest('.d-none'));
-    })
-    
-}
 
+// renameColBtn1.addEventListener('click', function(){
+//     const inputTitle1 = document.querySelector('.preview-card-title1 .rename-col')
+//     inputTitle1.classList.remove('d-none')
+//     const cardTitle1 = document.querySelector('.preview-card-title1 p')
+//     cardTitle1.classList.add('d-none')
+
+// })
+   
+for (let i = 0; i < renameColBtn.length; i++) {
+    
+    renameColBtn[i].addEventListener('click',function() {
+        this.classList.add('d-none')
+        for (let i = 0; i < renameColText.length; i++) {
+            if(this.dataset.cardindex === renameColText[i].dataset.cardindex )
+                renameColText[i].classList.remove('d-none')
+        }
+        
+    })
+}
+for (let i = 0; i < deleteColBtn.length; i++) {
+    
+    deleteColBtn[i].addEventListener('click',function() {
+        for (let i = 0; i < previewCard.length; i++) {
+            if(this.dataset.cardindex === previewCard[i].dataset.cardindex ){
+                previewCard[i].remove()
+            }
+            
+        }
+        
+        
+    })
+}
 
 
 // chiusura overlay
