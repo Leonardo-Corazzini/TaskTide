@@ -116,8 +116,8 @@ addForm.addEventListener('submit', function (event) {
 closeBtn.addEventListener('click', function(event){
         overlayContainer.classList.add('d-off')
         overlayContainer.classList.remove('overflow-h')
-        removeIconFocus()
-        removeColorFocus()
+        // removeIconFocus()
+        // removeColorFocus()
 
 })
 // rimozione di tutte task al cliccare del cestino

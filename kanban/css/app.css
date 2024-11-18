@@ -145,7 +145,6 @@ h1 {
 
 .to-do-element:hover {
     transform: scale(1.1);
-    background-color: #83a4c2;
 }
 
 .trash {
@@ -424,10 +423,10 @@ h1 {
     color: white;
 }
 .random-bg{
-    animation: bgcolors 1s infinite;
+    animation: bgcolors 5s infinite;
 }
 .fa-question{
-    animation: colors 0.9s infinite;
+    animation: colors 4s infinite;
 }
 
 
@@ -517,46 +516,46 @@ h1 {
 }
 @keyframes bgcolors {
     0% {
-        background-color: #0C2D48;
+        background-color: #10564F;
     }
 
     25% {
-        background-color: blue;
+        background-color: #0C2D48;
     }
 
     50% {
-        background-color: green;
+        background-color: rgb(38, 86, 38);
     }
 
     75% {
-        background-color: yellow;
+        background-color: #FF8300;
     }
 
     100% {
-        background-color: red;
+        background-color: #A92420;
     }
        
 }
 @keyframes colors {
     0% {
-        color: #0C2D48;
+        color: white;
     }
 
     25% {
-        color: blue;
+        color: black;
     }
 
     50% {
-        color: green;
+        color: white;
     }
 
     75% {
-        color: yellow;
+        color: black;
     }
 
     100% {
-        color: red;
-    }  
+        color: white;
+    }
 }
 @keyframes exit {
 	0% {
