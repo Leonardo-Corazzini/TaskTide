@@ -211,50 +211,95 @@ previewForm.addEventListener('submit', function (event) {
     modOverlayContainer.classList.add('d-off')
     modOverlayContainer.classList.remove('overflow-h')
     confirmPreviewBtn.classList.add('d-none')
-    if (renameColText[0].value) {
-        cardTitle[0].innerHTML = renameColText[0].value
-        renameColText[0].classList.add('d-none')
-        renameColBtn[0].classList.remove('d-none')
-    }
-    if (renameColText[1].value) {
-        cardTitle[1].innerHTML = renameColText[1].value
-        renameColText[1].classList.add('d-none')
-        renameColBtn[1].classList.remove('d-none')
-    }
-    if (renameColText[2].value) {
-        cardTitle[2].innerHTML = renameColText[2].value
-        renameColText[2].classList.add('d-none')
-        renameColBtn[2].classList.remove('d-none')
-    }
-    if (renameColText[3].value) {
-        cardTitle[3].innerHTML = renameColText[3].value
-        renameColText[3].classList.add('d-none')
-        renameColBtn[3].classList.remove('d-none')
-    }
-    previewCardTitle[0].innerHTML = cardTitle[0].innerHTML
-    previewCardTitle[1].innerHTML = cardTitle[1].innerHTML
-    previewCardTitle[2].innerHTML =cardTitle[2].innerHTML
-    previewCardTitle[3].innerHTML = cardTitle[3].innerHTML
-
-    isTrue(previewCard, mainCols)
+    // if (renameColText[0].value) {
+    //     cardTitle[0].innerHTML = renameColText[0].value
+    //     renameColText[0].classList.add('d-none')
+    //     renameColBtn[0].classList.remove('d-none')
+    // }
+    // if (renameColText[1].value) {
+    //     cardTitle[1].innerHTML = renameColText[1].value
+    //     renameColText[1].classList.add('d-none')
+    //     renameColBtn[1].classList.remove('d-none')
+    // }
+    // if (renameColText[2].value) {
+    //     cardTitle[2].innerHTML = renameColText[2].value
+    //     renameColText[2].classList.add('d-none')
+    //     renameColBtn[2].classList.remove('d-none')
+    // }
+    // if (renameColText[3].value) {
+    //     cardTitle[3].innerHTML = renameColText[3].value
+    //     renameColText[3].classList.add('d-none')
+    //     renameColBtn[3].classList.remove('d-none')
+    // }
+    renameCol(renameColText,cardTitle,renameColBtn)
+ 
+    renameColPreview(previewCardTitle,cardTitle)
+      // previewCardTitle[0].innerHTML = cardTitle[0].innerHTML
+    // previewCardTitle[1].innerHTML = cardTitle[1].innerHTML
+    // previewCardTitle[2].innerHTML =cardTitle[2].innerHTML
+    // previewCardTitle[3].innerHTML = cardTitle[3].innerHTML
+    removeCol(previewCard, mainCols)
+    // if (previewCard[0].dataset.delete === 'true') {
+    //     mainCols[0].dataset.delete = 'true'
+    //     mainCols[0].remove()
+    
+    // }
+    // if (previewCard[1].dataset.delete === 'true') {
+    //     mainCols[1].dataset.delete = 'true'
+    //     mainCols[1].remove()
+    
+    // }
+    // if (previewCard[2].dataset.delete === 'true') {
+    //     mainCols[2].dataset.delete = 'true'
+    //     mainCols[2].remove()
+    // }
+    // if (previewCard[3].dataset.delete === 'true') {
+    //     mainCols[3].dataset.delete = 'true'
+    //     mainCols[3].remove()
+    // }
     
 })
 
-function isTrue (arrayOne, arrayTwo){
+
+function renameCol(arrayOne, arrayTwo,arrayTree){
+    for (let i = 0; i < arrayOne.length; i++) {
+
+        const inputTextPreview = arrayOne[i]
+        const colText = arrayTwo[i];
+        const previewBtn = arrayTree[i]
+        if (inputTextPreview.value) {
+            colText.innerHTML = inputTextPreview.value
+            inputTextPreview.classList.add('d-none')
+            previewBtn.classList.remove('d-none')
+        }
+       
+                
+            
+            
+        
+    }}
+function renameColPreview(arrayOne,arrayTwo){
+    for (let i = 0; i < arrayOne.length; i++)   {
+        const colTextPreview = arrayOne[i]
+        const colText = arrayTwo[i];
+        colTextPreview.innerHTML = colText.innerHTML
+    }
+        
+}
+function removeCol (arrayOne, arrayTwo){
     for (let i = 0; i < arrayOne.length; i++) {
 
         const elementPreview = arrayOne[i]
-
-        if (elementPreview.dataset.delete === 'true') {
-
-            for (let y = 0; y < arrayTwo.length; y++) {
-                const elementCol = arrayTwo[y];
-
-                elementCol.dataset.delete = 'true'
-                elementCol.remove()
-            }
-            
+        const elementCol = arrayTwo[i];
+    
+        if (elementPreview.dataset.delete === 'true'){
+            elementCol.dataset.delete = 'true'
+            elementCol.remove()
         }
+                
+            
+            
+        
     }}
 
 // chiusura overlay
