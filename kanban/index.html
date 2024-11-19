@@ -20,11 +20,11 @@
     <div class="container btn-section">
         <div class="add-button">Aggiungi <i class="fa-solid fa-plus"></i></div>
         <div class="modify-button">Modifica <i class="fa-solid fa-pen-to-square"></i></div>
-        <div class="todolist-button">To do list  
+        <div class="todolist-button">"To do" lista
             <span class="box"><i class="fa-regular fa-square "></i></span>
             <span class="check-box d-none"><i class="fa-regular fa-square-check"></i></span>
         </div>
-        
+
     </div>
     <main>
         <div class="container">
@@ -69,6 +69,16 @@
                     </div>
                 </div>
 
+                <!-- TO DO COLUMN -->
+                <div class="main-col col d-none" data-cardindex="5" data-delete="false">
+                    <div class="card">
+                        <div class="card-title">
+                            <h2 data-cardindex="4">"To Do" Lista</h2>
+                        </div>
+                        <div class="card-body"></div>
+                    </div>
+                </div>
+                <!-- /TO DO COLUMN -->
             </div>
         </div>
 
@@ -201,7 +211,7 @@
                         <p>Aperto</p>
                         <i class="fa-solid fa-pencil"></i>
                     </div>
-                    <input type="text" placeholder="In Coda" data-cardindex="2" class="rename-col d-none">
+                    <input type="text" placeholder="Aperto" data-cardindex="2" class="rename-col d-none">
                     <div class="preview-undo-btn" data-cardindex="2"><i class="fa-solid fa-circle-xmark"></i></div>
                 </div>
             </div>
@@ -211,7 +221,7 @@
                         <p>Revisione</p>
                         <i class="fa-solid fa-pencil"></i>
                     </div>
-                    <input type="text" placeholder="In Coda" data-cardindex="3" class="rename-col d-none">
+                    <input type="text" placeholder="Revisione" data-cardindex="3" class="rename-col d-none">
                     <div data-cardindex="3" class="preview-undo-btn"><i class="fa-solid fa-circle-xmark"></i></div>
                 </div>
             </div>
@@ -221,10 +231,17 @@
                         <p>Completato</p>
                         <i class="fa-solid fa-pencil"></i>
                     </div>
-                    <input type="text" placeholder="In Coda" data-cardindex="4" class="rename-col d-none">
+                    <input type="text" placeholder="Completato" data-cardindex="4" class="rename-col d-none">
                     <div data-cardindex="4" class="preview-undo-btn"><i class="fa-solid fa-circle-xmark"></i></div>
                 </div>
             </div>
+            
+            <div class="col d-none">
+                <div class="card">
+                    <button class="add-col-preview-button">Aggiungi colonna</button>
+                </div>
+            </div>
+            
             <button class="confirm-preview-button d-none">Conferma</button>
             <i class="fa-regular fa-circle-xmark closed-btn"></i>
         </form>
@@ -232,7 +249,7 @@
 
 
 
-        <script src="/kanban/script.js"></script>
+    <script src="/kanban/script.js"></script>
 </body>
 
 </html>
