@@ -134,13 +134,13 @@ addForm.addEventListener('submit', function (event) {
         toDoEl = createCard('div', ['to-do-element', color], toDoText.value, icon, el => (el.draggable = true))
 
         toDoEl.style = misteryColor
-         
-        if(mainCols[0].dataset.delete === 'true' && mainCols[1].dataset.delete === 'false'){
+
+        if (mainCols[0].dataset.delete === 'true' && mainCols[1].dataset.delete === 'false') {
             console.log('sono in questa condizione')
             cards[1].appendChild(toDoEl)
-        } else if (mainCols[1].dataset.delete === 'true'&& mainCols[2].dataset.delete === 'false'){
+        } else if (mainCols[1].dataset.delete === 'true' && mainCols[2].dataset.delete === 'false') {
             cards[2].appendChild(toDoEl)
-        } else if(mainCols[2].dataset.delete === 'true'&& mainCols[3].dataset.delete === 'false'){
+        } else if (mainCols[2].dataset.delete === 'true' && mainCols[3].dataset.delete === 'false') {
             cards[3].appendChild(toDoEl)
         } else {
             cards[0].appendChild(toDoEl)
@@ -177,7 +177,6 @@ for (let i = 0; i < renameColBtn.length; i++) {
 
     renameColBtn[i].addEventListener('click', function () {
         this.classList.add('d-none')
-        console.log('text')
         confirmPreviewBtn.classList.remove('d-none')
         console.log(confirmPreviewBtn)
         for (let i = 0; i < renameColText.length; i++) {
@@ -191,7 +190,6 @@ for (let i = 0; i < renameColBtn.length; i++) {
 for (let i = 0; i < deleteColBtn.length; i++) {
 
     deleteColBtn[i].addEventListener('click', function () {
-        console.log('textvsvs')
         confirmPreviewBtn.classList.remove('d-none')
         for (let i = 0; i < previewCard.length; i++) {
             if (this.dataset.cardindex === previewCard[i].dataset.cardindex) {
@@ -231,10 +229,10 @@ previewForm.addEventListener('submit', function (event) {
     //     renameColText[3].classList.add('d-none')
     //     renameColBtn[3].classList.remove('d-none')
     // }
-    renameCol(renameColText,cardTitle,renameColBtn)
- 
-    renameColPreview(previewCardTitle,cardTitle)
-      // previewCardTitle[0].innerHTML = cardTitle[0].innerHTML
+    renameCol(renameColText, cardTitle, renameColBtn)
+
+    renameColPreview(previewCardTitle, cardTitle)
+    // previewCardTitle[0].innerHTML = cardTitle[0].innerHTML
     // previewCardTitle[1].innerHTML = cardTitle[1].innerHTML
     // previewCardTitle[2].innerHTML =cardTitle[2].innerHTML
     // previewCardTitle[3].innerHTML = cardTitle[3].innerHTML
@@ -242,12 +240,12 @@ previewForm.addEventListener('submit', function (event) {
     // if (previewCard[0].dataset.delete === 'true') {
     //     mainCols[0].dataset.delete = 'true'
     //     mainCols[0].remove()
-    
+
     // }
     // if (previewCard[1].dataset.delete === 'true') {
     //     mainCols[1].dataset.delete = 'true'
     //     mainCols[1].remove()
-    
+
     // }
     // if (previewCard[2].dataset.delete === 'true') {
     //     mainCols[2].dataset.delete = 'true'
@@ -257,11 +255,11 @@ previewForm.addEventListener('submit', function (event) {
     //     mainCols[3].dataset.delete = 'true'
     //     mainCols[3].remove()
     // }
-    
+
 })
 
 
-function renameCol(arrayOne, arrayTwo,arrayTree){
+function renameCol(arrayOne, arrayTwo, arrayTree) {
     for (let i = 0; i < arrayOne.length; i++) {
 
         const inputTextPreview = arrayOne[i]
@@ -272,41 +270,55 @@ function renameCol(arrayOne, arrayTwo,arrayTree){
             inputTextPreview.classList.add('d-none')
             previewBtn.classList.remove('d-none')
         }
-       
-                
-            
-            
-        
-    }}
-function renameColPreview(arrayOne,arrayTwo){
-    for (let i = 0; i < arrayOne.length; i++)   {
+
+
+
+
+
+    }
+}
+function renameColPreview(arrayOne, arrayTwo) {
+    for (let i = 0; i < arrayOne.length; i++) {
         const colTextPreview = arrayOne[i]
         const colText = arrayTwo[i];
         colTextPreview.innerHTML = colText.innerHTML
     }
-        
+
 }
-function removeCol (arrayOne, arrayTwo){
+function removeCol(arrayOne, arrayTwo) {
     for (let i = 0; i < arrayOne.length; i++) {
 
         const elementPreview = arrayOne[i]
         const elementCol = arrayTwo[i];
-    
-        if (elementPreview.dataset.delete === 'true'){
+
+        if (elementPreview.dataset.delete === 'true') {
             elementCol.dataset.delete = 'true'
             elementCol.remove()
         }
-                
-            
-            
-        
-    }}
+
+
+
+
+    }
+}
 
 // chiusura overlay
 
 closeBtn2.addEventListener('click', function (event) {
     modOverlayContainer.classList.add('d-off')
     modOverlayContainer.classList.remove('overflow-h')
+    for (let i = 0; i < renameColBtn.length; i++) {
+
+
+        renameColBtn[i].classList.remove('d-none')
+        confirmPreviewBtn.classList.add('d-none')
+        renameColText[i].classList.add('d-none')
+        renameColText[i].value=''
+        
+        
+
+
+    }
 
 })
 
