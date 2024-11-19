@@ -25,10 +25,10 @@
         <div class="container">
             <div class="row">
 
-                <div class="main-col col"  data-cardindex="1">
+                <div class="main-col col" data-cardindex="1" data-delete="false">
                     <div class="card">
                         <div class="card-title">
-                            <h2  data-cardindex="1">In Coda</h2>
+                            <h2 data-cardindex="1">In Coda</h2>
                         </div>
                         <div class="card-body">
 
@@ -37,28 +37,28 @@
                     </div>
                 </div>
 
-                <div class="main-col col"  data-cardindex="2">
+                <div class="main-col col" data-cardindex="2" data-delete="false">
                     <div class="card">
                         <div class="card-title">
-                            <h2  data-cardindex="2">Aperto</h2>
+                            <h2 data-cardindex="2">Aperto</h2>
                         </div>
                         <div class="card-body"></div>
                     </div>
                 </div>
 
-                <div class="main-col col" data-cardindex="3">
+                <div class="main-col col" data-cardindex="3" data-delete="false">
                     <div class="card">
                         <div class="card-title">
-                            <h2  data-cardindex="3">In Revisione</h2>
+                            <h2 data-cardindex="3">In Revisione</h2>
                         </div>
                         <div class="card-body"></div>
                     </div>
                 </div>
 
-                <div class="main-col col"  data-cardindex="4">
+                <div class="main-col col" data-cardindex="4" data-delete="false">
                     <div class="card">
                         <div class="card-title">
-                            <h2  data-cardindex="4">Completato</h2>
+                            <h2 data-cardindex="4">Completato</h2>
                         </div>
                         <div class="card-body"></div>
                     </div>
@@ -186,63 +186,48 @@
                         <p>In Coda</p>
                         <i class="fa-solid fa-pencil"></i>
                     </div>
-                    <input type="text" placeholder="In Coda" data-cardindex="1" class="rename-col d-none">                   
+                    <input type="text" placeholder="In Coda" data-cardindex="1" class="rename-col d-none">
                     <div data-cardindex="1" class="preview-undo-btn"><i class="fa-solid fa-circle-xmark"></i></div>
                 </div>
             </div>
-            <div class="col"  data-cardindex="2"  data-delete="false">
+            <div class="col" data-cardindex="2" data-delete="false">
                 <div class="card">
                     <div class="preview-card-title" data-cardindex="2">
                         <p>Aperto</p>
                         <i class="fa-solid fa-pencil"></i>
                     </div>
-                    <input type="text" placeholder="In Coda" data-cardindex="2" class="rename-col d-none">                   
-                    <div class="preview-undo-btn"  data-cardindex="2"><i class="fa-solid fa-circle-xmark"></i></div>
+                    <input type="text" placeholder="In Coda" data-cardindex="2" class="rename-col d-none">
+                    <div class="preview-undo-btn" data-cardindex="2"><i class="fa-solid fa-circle-xmark"></i></div>
                 </div>
             </div>
-            <div class="col" data-cardindex="3"  data-delete="false">
+            <div class="col" data-cardindex="3" data-delete="false">
                 <div class="card">
                     <div class="preview-card-title" data-cardindex="3">
                         <p>Revisione</p>
                         <i class="fa-solid fa-pencil"></i>
                     </div>
-                    <input type="text" placeholder="In Coda" data-cardindex="3" class="rename-col d-none">                   
+                    <input type="text" placeholder="In Coda" data-cardindex="3" class="rename-col d-none">
                     <div data-cardindex="3" class="preview-undo-btn"><i class="fa-solid fa-circle-xmark"></i></div>
                 </div>
             </div>
-            <div class="col" data-cardindex="4"  data-delete="false">
+            <div class="col" data-cardindex="4" data-delete="false">
                 <div class="card">
                     <div class="preview-card-title" data-cardindex="4">
                         <p>Completato</p>
                         <i class="fa-solid fa-pencil"></i>
                     </div>
-                    <input type="text" placeholder="In Coda" data-cardindex="4" class="rename-col d-none">                   
+                    <input type="text" placeholder="In Coda" data-cardindex="4" class="rename-col d-none">
                     <div data-cardindex="4" class="preview-undo-btn"><i class="fa-solid fa-circle-xmark"></i></div>
                 </div>
             </div>
-           
-           
-
-
-
-
-
-
-
-       
-
             <button class="confirm-preview-button d-none">Conferma</button>
             <i class="fa-regular fa-circle-xmark closed-btn"></i>
         </form>
+    </div>
 
 
 
-
-
-
-
-
-    <script src="/kanban/script.js"></script>
+        <script src="/kanban/script.js"></script>
 </body>
 
 </html>

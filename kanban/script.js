@@ -134,7 +134,17 @@ addForm.addEventListener('submit', function (event) {
         toDoEl = createCard('div', ['to-do-element', color], toDoText.value, icon, el => (el.draggable = true))
 
         toDoEl.style = misteryColor
-        cardBody.appendChild(toDoEl)
+         
+        if(mainCols[0].dataset.delete === 'true' && mainCols[1].dataset.delete === 'false'){
+            console.log('sono in questa condizione')
+            cards[1].appendChild(toDoEl)
+        } else if (mainCols[1].dataset.delete === 'true'&& mainCols[2].dataset.delete === 'false'){
+            cards[2].appendChild(toDoEl)
+        } else if(mainCols[2].dataset.delete === 'true'&& mainCols[3].dataset.delete === 'false'){
+            cards[3].appendChild(toDoEl)
+        } else {
+            cards[0].appendChild(toDoEl)
+        }
 
         toDoEl.addEventListener('dragstart', dragStart)
         toDoEl.addEventListener('dragend', dragEnd)
@@ -227,15 +237,21 @@ previewForm.addEventListener('submit', function (event) {
     previewCardTitle[3].innerHTML = cardTitle[3].innerHTML
     
     if (previewCard[0].dataset.delete === 'true') {
+        mainCols[0].dataset.delete = 'true'
         mainCols[0].remove()
+        
     }
     if (previewCard[1].dataset.delete === 'true') {
+        mainCols[1].dataset.delete = 'true'
         mainCols[1].remove()
+        
     }
     if (previewCard[2].dataset.delete === 'true') {
+        mainCols[2].dataset.delete = 'true'
         mainCols[2].remove()
     }
     if (previewCard[3].dataset.delete === 'true') {
+        mainCols[3].dataset.delete = 'true'
         mainCols[3].remove()
     }
 
