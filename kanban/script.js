@@ -1,17 +1,11 @@
 // bottoni principali
 const darkBtn = document.querySelector('.dark-button')
 const addBtn = document.querySelector('.add-button')
-const deleteMessage = document.querySelector('.overlay-transparent-undo')
-const deleteModule = document.querySelector('.delete-section')
-const undoDelete = document.querySelector('.no')
-const deleteAllBtn = document.querySelector('.yes')
 const modBtn = document.querySelector('.modify-button')
-const previewForm = document.querySelector('.preview-col')
-const previewCard = document.querySelectorAll('.preview-col .col')
-const renameColBtn = document.querySelectorAll('.preview-card-title')
-const deleteColBtn = document.querySelectorAll('.preview-undo-btn')
-const renameColText = document.querySelectorAll('.rename-col')
-const confirmPreviewBtn = document.querySelector('.confirm-preview-button')
+
+
+
+
 //elementi della sezione overlay con form aggiunta testo icona e colori
 const overlayContainer = document.querySelector('.overlay-container')
 const modOverlayContainer = document.querySelector('.modify-overlay')
@@ -30,7 +24,10 @@ let arrayColor = []
 const undoBtn = document.getElementById('undo-button')
 const confirmBtn = document.getElementById('confirm-button')
 const closeBtn = document.querySelector('.closed-btn')
-const closeBtn2 = document.querySelector('.modify-overlay .closed-btn')
+
+
+
+
 // elementi per la gestione del drag and drop
 const cardBody = document.querySelector('.card-body')
 const cards = document.querySelectorAll('.card-body')
@@ -39,9 +36,34 @@ const trashImg = document.querySelector('.trash-img')
 
 
 
+// overlay per la modifca della kanban
+const previewForm = document.querySelector('.preview-col')
+const previewCard = document.querySelectorAll('.preview-col .col')
+const renameColBtn = document.querySelectorAll('.preview-card-title')
+const deleteColBtn = document.querySelectorAll('.preview-undo-btn')
+const renameColText = document.querySelectorAll('.rename-col')
+const cardTitle = document.querySelectorAll('.card-title h2')
+const previewCardTitle = document.querySelectorAll('.preview-card-title p')
+const mainCols = document.querySelectorAll('.main-col')
+const confirmPreviewBtn = document.querySelector('.confirm-preview-button')
+const closeBtn2 = document.querySelector('.modify-overlay .closed-btn')
 
-// -----------------------------------ASCOLTO DEGLI EVENTI-----------------------------------------------------
-// pulsante per attivARE DARKMODE
+
+
+// overlay per elimazione task
+const deleteMessage = document.querySelector('.overlay-transparent-undo')
+const deleteModule = document.querySelector('.delete-section')
+const undoDelete = document.querySelector('.no')
+const deleteAllBtn = document.querySelector('.yes')
+
+
+
+
+
+
+
+// -----------------------------------DARK MODE--------------------------------------------------------
+// ascolto evento bottono per darkmode
 darkBtn.addEventListener('click', function () {
     document.body.classList.toggle('dark-mode')
     if (document.body.className === 'dark-mode') {
@@ -50,6 +72,10 @@ darkBtn.addEventListener('click', function () {
         trashImg.src = "../img/cestino-chiuso.png"
     }
 })
+
+
+
+// -----------------------------------AGGIUNTA TASK-----------------------------------------------------
 // ascolto bottone di aggiunta task
 addBtn.addEventListener('click', function () {
     overlayContainer.classList.remove('d-off')
@@ -121,22 +147,22 @@ addForm.addEventListener('submit', function (event) {
     }
 
 })
+closeBtn.addEventListener('click', function (event) {
+    overlayContainer.classList.add('d-off')
+    overlayContainer.classList.remove('overflow-h')
+})
 
+
+
+// -----------------------------------MODIFICA CARD-----------------------------------------------------
 //modifica delle colonne
+// ascolto bottono modifca
 modBtn.addEventListener('click', function () {
     modOverlayContainer.classList.remove('d-off')
     modOverlayContainer.classList.add('overflow-h')
 })
 
-
-// renameColBtn1.addEventListener('click', function(){
-//     const inputTitle1 = document.querySelector('.preview-card-title1 .rename-col')
-//     inputTitle1.classList.remove('d-none')
-//     const cardTitle1 = document.querySelector('.preview-card-title1 p')
-//     cardTitle1.classList.add('d-none')
-
-// })
-
+// assegnazione a tutte le card ascolto evento per rinominare la colonna
 for (let i = 0; i < renameColBtn.length; i++) {
 
     renameColBtn[i].addEventListener('click', function () {
@@ -151,6 +177,7 @@ for (let i = 0; i < renameColBtn.length; i++) {
 
     })
 }
+// assegnazione a tutte le card ascolto evento per eliminare la colonna
 for (let i = 0; i < deleteColBtn.length; i++) {
 
     deleteColBtn[i].addEventListener('click', function () {
@@ -167,28 +194,38 @@ for (let i = 0; i < deleteColBtn.length; i++) {
 
     })
 }
-const cardTitle = document.querySelectorAll('.card-title h2')
-const mainCols = document.querySelectorAll('.main-col')
-console.log(confirmPreviewBtn)
+
+// conferma dei dati della personalizzazione
 previewForm.addEventListener('submit', function (event) {
     event.preventDefault()
-    console.log('ci siamo')
     modOverlayContainer.classList.add('d-off')
     modOverlayContainer.classList.remove('overflow-h')
     confirmPreviewBtn.classList.add('d-none')
     if (renameColText[0].value) {
         cardTitle[0].innerHTML = renameColText[0].value
+        renameColText[0].classList.add('d-none')
+        renameColBtn[0].classList.remove('d-none')
     }
     if (renameColText[1].value) {
         cardTitle[1].innerHTML = renameColText[1].value
+        renameColText[1].classList.add('d-none')
+        renameColBtn[1].classList.remove('d-none')
     }
     if (renameColText[2].value) {
         cardTitle[2].innerHTML = renameColText[2].value
+        renameColText[2].classList.add('d-none')
+        renameColBtn[2].classList.remove('d-none')
     }
     if (renameColText[3].value) {
         cardTitle[3].innerHTML = renameColText[3].value
+        renameColText[3].classList.add('d-none')
+        renameColBtn[3].classList.remove('d-none')
     }
-
+    previewCardTitle[0].innerHTML = cardTitle[0].innerHTML
+    previewCardTitle[1].innerHTML = cardTitle[1].innerHTML
+    previewCardTitle[2].innerHTML =cardTitle[2].innerHTML
+    previewCardTitle[3].innerHTML = cardTitle[3].innerHTML
+    
     if (previewCard[0].dataset.delete === 'true') {
         mainCols[0].remove()
     }
@@ -202,19 +239,9 @@ previewForm.addEventListener('submit', function (event) {
         mainCols[3].remove()
     }
 
-
-
-
-
-
-
 }
 )
 // chiusura overlay
-closeBtn.addEventListener('click', function (event) {
-    overlayContainer.classList.add('d-off')
-    overlayContainer.classList.remove('overflow-h')
-})
 
 closeBtn2.addEventListener('click', function (event) {
     modOverlayContainer.classList.add('d-off')
@@ -222,6 +249,12 @@ closeBtn2.addEventListener('click', function (event) {
 
 })
 
+
+
+
+
+
+// -----------------------------------ELIMINAZIONE TOTALE TASK-----------------------------------------------------
 // rimozione di tutte task al cliccare del cestino
 trashImg.addEventListener('click', function () {
     deleteMessage.classList.remove('d-none')
@@ -253,6 +286,10 @@ deleteMessage.addEventListener('click', function (event) {
     }
 
 })
+
+
+
+
 
 
 // -----------------------------------EVENTI DRAG AND DROP-----------------------------------------------------
@@ -336,6 +373,13 @@ trashImg.addEventListener('drop', function (event) {
     dragItem.remove()
     console.log('sto eliminando');
 })
+
+
+
+
+
+
+
 
 
 // -----------------------------------FUNZIONI---------------------------------------------------------------
