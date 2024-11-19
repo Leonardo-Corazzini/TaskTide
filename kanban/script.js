@@ -235,28 +235,28 @@ previewForm.addEventListener('submit', function (event) {
     previewCardTitle[1].innerHTML = cardTitle[1].innerHTML
     previewCardTitle[2].innerHTML =cardTitle[2].innerHTML
     previewCardTitle[3].innerHTML = cardTitle[3].innerHTML
-    
-    if (previewCard[0].dataset.delete === 'true') {
-        mainCols[0].dataset.delete = 'true'
-        mainCols[0].remove()
-        
-    }
-    if (previewCard[1].dataset.delete === 'true') {
-        mainCols[1].dataset.delete = 'true'
-        mainCols[1].remove()
-        
-    }
-    if (previewCard[2].dataset.delete === 'true') {
-        mainCols[2].dataset.delete = 'true'
-        mainCols[2].remove()
-    }
-    if (previewCard[3].dataset.delete === 'true') {
-        mainCols[3].dataset.delete = 'true'
-        mainCols[3].remove()
-    }
 
-}
-)
+    isTrue(previewCard, mainCols)
+    
+})
+
+function isTrue (arrayOne, arrayTwo){
+    for (let i = 0; i < arrayOne.length; i++) {
+
+        const elementPreview = arrayOne[i]
+
+        if (elementPreview.dataset.delete === 'true') {
+
+            for (let y = 0; y < arrayTwo.length; y++) {
+                const elementCol = arrayTwo[y];
+
+                elementCol.dataset.delete = 'true'
+                elementCol.remove()
+            }
+            
+        }
+    }}
+
 // chiusura overlay
 
 closeBtn2.addEventListener('click', function (event) {
