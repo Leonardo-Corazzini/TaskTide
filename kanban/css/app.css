@@ -91,6 +91,10 @@ h1 {
 
 
 /* main style */
+.btn-section{
+    display: flex;
+
+}
 .add-button,
 .modify-button {
     margin: 20px 0 5px 15px;
@@ -107,12 +111,24 @@ h1 {
 }
 
 .add-button:hover,
-.modify-button:hover {
+.modify-button:hover,
+.todolist-button:hover{
     background-color: #2373be;
 
 }
 
-
+.todolist-button{
+    margin: 20px 15px 5px auto;
+    padding: 7px 10px;
+    background-color: #145C9E;
+    display: inline-block;
+    border-radius: 14px;
+    line-height: 20px;
+    cursor: pointer;
+    color: white;
+    box-shadow: rgba(0, 0, 0, 0.297) 2px 2px 4px 1px;
+    transition: background-color 1s;
+}
 
 .card-title{
     color: rgb(40, 39, 39);

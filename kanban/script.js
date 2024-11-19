@@ -2,7 +2,9 @@
 const darkBtn = document.querySelector('.dark-button')
 const addBtn = document.querySelector('.add-button')
 const modBtn = document.querySelector('.modify-button')
-
+const toDoBtn = document.querySelector('.todolist-button')
+const box = document.querySelector('.box')
+const checkBox = document.querySelector('.check-box')
 
 
 
@@ -320,8 +322,22 @@ closeBtn2.addEventListener('click', function (event) {
 })
 
 
-
-
+// -----------------------------------TO DO LIST MODE-----------------------------------------------------
+toDoBtn.addEventListener('click',function(){
+    modBtn.classList.toggle('d-none')
+    box.classList.toggle('d-none')
+    checkBox.classList.toggle('d-none')
+    if(box.classList.contains('d-none')){
+        cardTitle[0].innerHTML = 'ToDo list'
+    } else{
+        cardTitle[0].innerHTML = previewCardTitle[0].innerHTML
+    }
+    
+   
+    mainCols[1].classList.toggle('d-none')
+    mainCols[2].classList.toggle('d-none')
+    mainCols[3].classList.toggle('d-none')
+})
 
 
 // -----------------------------------ELIMINAZIONE TOTALE TASK-----------------------------------------------------
