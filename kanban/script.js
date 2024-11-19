@@ -40,9 +40,9 @@ const trashImg = document.querySelector('.trash-img')
 
 // overlay per la modifca della kanban
 const previewForm = document.querySelector('.preview-col')
-const previewCard = document.querySelectorAll('.preview-col .col')
+let previewCard = document.querySelectorAll('.preview-col .col')
 const renameColBtn = document.querySelectorAll('.preview-card-title')
-const deleteColBtn = document.querySelectorAll('.preview-undo-btn')
+let deleteColBtn = document.querySelectorAll('.preview-undo-btn')
 const renameColText = document.querySelectorAll('.rename-col')
 const cardTitle = document.querySelectorAll('.card-title h2')
 const previewCardTitle = document.querySelectorAll('.preview-card-title p')
@@ -50,6 +50,7 @@ const mainCols = document.querySelectorAll('.main-col')
 const confirmPreviewBtn = document.querySelector('.confirm-preview-button')
 const addColPreviewBtn = document.querySelector('.add-col-preview-button')
 const closeBtn2 = document.querySelector('.modify-overlay .closed-btn')
+const addCol = document.querySelector('.add-col')
 
 
 
@@ -134,7 +135,7 @@ addForm.addEventListener('submit', function (event) {
         removeColorFocus()
         overlayContainer.classList.add('d-off')
         overlayContainer.classList.remove('overflow-h')
-        toDoEl = createCard('div', ['to-do-element', color], toDoText.value, icon, el => (el.draggable = true))
+        toDoEl = createTask('div', ['to-do-element', color], toDoText.value, icon, el => (el.draggable = true))
 
         toDoEl.style = misteryColor
 
@@ -170,6 +171,7 @@ closeBtn.addEventListener('click', function (event) {
 
 
 // -----------------------------------MODIFICA CARD-----------------------------------------------------
+let eliminateCol = ''
 // ascolto bottono modifca
 modBtn.addEventListener('click', function () {
     modOverlayContainer.classList.remove('d-off')
@@ -195,9 +197,10 @@ for (let i = 0; i < deleteColBtn.length; i++) {
 
     deleteColBtn[i].addEventListener('click', function () {
         confirmPreviewBtn.classList.remove('d-none')
-        previewCard[4].classList.remove('d-none')
+        addCol.classList.remove('d-none')
         for (let i = 0; i < previewCard.length; i++) {
             if (this.dataset.cardindex === previewCard[i].dataset.cardindex) {
+                eliminateCol = previewCard[i].dataset.cardindex
                 previewCard[i].dataset.delete = 'true'
                 previewCard[i].remove()
             }
@@ -221,11 +224,54 @@ previewForm.addEventListener('submit', function (event) {
 })
 
 // aggiungi colonna
-
+/* <div class="col" data-cardindex="1" data-delete="false">
+<div class="card">
+    <div class="preview-card-title" data-cardindex="1">
+        <p>In Coda</p>
+        <i class="fa-solid fa-pencil"></i>
+    </div>
+    <input type="text" placeholder="In Coda" data-cardindex="1" class="rename-col d-none">
+    <div data-cardindex="1" class="preview-undo-btn"><i class="fa-solid fa-circle-xmark"></i></div>
+</div>
+</div> */
 addColPreviewBtn.addEventListener('click', function(event){
     event.preventDefault()
+    const newCol = myCreateCol('div',['col'],[
+        myCreateCol('div',['card'],
+            [myCreateCol('div',['preview-card-title'],[
+                myCreateCol('p'),myCreateCol('i',['fa-solid','fa-pencil'])]),
+            myCreateCol('input',['rename-col','d-none']),
+            myCreateCol('div',['preview-undo-btn'],[
+                myCreateCol('i',['fa-solid','fa-circle-xmark'])
+            ],el => (el.dataset.cardindex = eliminateCol))
 
+        ])],el => (el.dataset.delete = 'false',
+            el.dataset.cardindex = eliminateCol
+        ))
+    previewForm.appendChild(newCol)
+    deletePreviewBtn()
+    if(previewCard.length > 1){
+        addCol.classList.add('d-none')
+    }    
 })
+function deletePreviewBtn (){
+    deleteColBtn = document.querySelectorAll('.preview-undo-btn')
+    for (let i = 0; i < deleteColBtn.length; i++) {
+        deleteColBtn[i].addEventListener('click', function () {
+            confirmPreviewBtn.classList.remove('d-none')
+            addCol.classList.remove('d-none')
+            previewCard = document.querySelectorAll('.preview-col .col')
+            console.log(previewCard)
+            for (let i = 0; i < previewCard.length; i++) {
+                if (this.dataset.cardindex === previewCard[i].dataset.cardindex) {
+                    eliminateCol = previewCard[i].dataset.cardindex
+                    previewCard[i].dataset.delete = 'true'
+                    previewCard[i].remove()
+                }
+            }
+        })
+    }
+}
 // chiusura overlay
 
 closeBtn2.addEventListener('click', function (event) {
@@ -400,7 +446,7 @@ function removeColorFocus() {
 }
 
 // utilities function
-function createCard(
+function createTask(
     tagName,
     classList = [],
     content,
@@ -425,6 +471,40 @@ function createCard(
 
     return el;
 }
+function myCreateCol(
+    tagnName,
+    classList = [],
+    content = [],
+    callback = false
+  ) {
+    // Creo l'elemento
+    const el = document.createElement(tagnName);
+  
+    // Aggiungo le classi
+    if (classList.length > 0) {
+      el.classList.add(...classList);
+    }
+  
+    // Esegui la callback passando l'elemento
+    if (callback) {
+      callback(el);
+    }
+  
+    // Contenuto
+    if (Array.isArray(content)) {
+      for (let i = 0; i < content.length; i++) {
+        el.appendChild(content[i]);
+      }
+    } else if (content instanceof HTMLElement) {
+      el.appendChild(content);
+    } else if (typeof content === "string") {
+      el.innerHTML = content;
+    } else {
+      console.error("Non posso aggiungere l'elemento");
+    }
+    return el;
+  }
+
 
 function randomColor() {
     const num1 = getRandomInt(1, 255)
