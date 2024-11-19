@@ -405,6 +405,7 @@ h1 {
     min-height: 500px;
     background-color: #A7E8BD;
     padding: 20px;
+    position: relative;
 }
 .preview-col .card {
     height: 100%;
@@ -425,6 +426,28 @@ h1 {
     z-index: 1;
     cursor: pointer;
 }
+.confirm-preview-button{
+    margin: 15px 0 0 15px;
+    padding: 7px 10px;
+    background-color: #149e97;
+    display: inline-block;
+    border-radius: 14px;
+    border: none;
+    line-height: 20px;
+    cursor: pointer;
+    color: white;
+    box-shadow: rgba(0, 0, 0, 0.297) 2px 2px 4px 1px;
+    font-size: 16px;
+    position: absolute;
+    left: 49%;
+    top: 100%;
+    transform: translateX(-50%);
+}
+
+.confirm-preview-button:hover{
+    background-color: #44b4af;
+}
+
 /* utilities class */
 .overflow-h {
     overflow: hidden;
