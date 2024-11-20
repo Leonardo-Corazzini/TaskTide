@@ -91,10 +91,11 @@ h1 {
 
 
 /* main style */
-.btn-section{
+.btn-section {
     display: flex;
 
 }
+
 .add-button,
 .modify-button {
     margin: 20px 0 5px 15px;
@@ -112,12 +113,12 @@ h1 {
 
 .add-button:hover,
 .modify-button:hover,
-.todolist-button:hover{
+.todolist-button:hover {
     background-color: #2373be;
 
 }
 
-.todolist-button{
+.todolist-button {
     margin: 20px 15px 5px auto;
     padding: 7px 10px;
     background-color: #145C9E;
@@ -130,7 +131,7 @@ h1 {
     transition: background-color 1s;
 }
 
-.card-title{
+.card-title {
     color: rgb(40, 39, 39);
     padding-top: 10px;
     margin-bottom: 30px;
@@ -181,9 +182,11 @@ h1 {
     cursor: pointer;
 
 }
-.trash img:hover{
+
+.trash img:hover {
     transform: scale(1.05);
 }
+
 /* DELETE SECTION */
 
 .overlay-transparent-undo {
@@ -200,7 +203,7 @@ h1 {
     align-items: center;
 }
 
-.delete-section{
+.delete-section {
     background-color: #145C9E;
     height: 12vh;
     width: 24vw;
@@ -217,14 +220,14 @@ h1 {
     margin-bottom: 50vh;
 }
 
-.btn-container{
+.btn-container {
     display: flex;
     margin-left: auto;
     gap: 10px;
     padding-right: 5px;
 }
 
-.btn-container > * {
+.btn-container>* {
     padding: 6px 8px;
     background-color: #ffffff;
     display: inline-block;
@@ -234,10 +237,10 @@ h1 {
     cursor: pointer;
     color: rgb(0, 0, 0);
     font-size: 16px;
-    
+
 }
 
-.btn-container > *:hover {
+.btn-container>*:hover {
     background-color: #dfdfdf
 }
 
@@ -258,7 +261,7 @@ h1 {
     justify-content: center;
     visibility: visible;
     opacity: 1;
-    transition: opacity 1s ease, visibility 0.3s ease , background-color 1s;
+    transition: opacity 1s ease, visibility 0.3s ease, background-color 1s;
     user-select: none;
 }
 
@@ -309,9 +312,11 @@ h1 {
     color: white;
     outline: 3px solid rgb(19, 19, 32);
 }
-.color-section > *:hover{
+
+.color-section>*:hover {
     outline: 3px solid rgb(255, 255, 255);
 }
+
 .color-section>*.focus {
     outline: 3px solid rgb(19, 19, 32);
 }
@@ -339,7 +344,8 @@ h1 {
 #to-do-text:focus {
     outline: 3px solid #44b4af;
 }
-#undo-button{
+
+#undo-button {
     margin: 15px 0 0 15px;
     padding: 7px 10px;
     background-color: #ffffff;
@@ -351,9 +357,11 @@ h1 {
     box-shadow: rgba(0, 0, 0, 0.297) 2px 2px 4px 1px;
     font-size: 16px;
 }
-#undo-button:hover{
+
+#undo-button:hover {
     background-color: #dfdfdf
 }
+
 #confirm-button {
     margin: 15px 0 0 15px;
     padding: 7px 10px;
@@ -390,7 +398,7 @@ h1 {
 
 /* MODIFY SECTION */
 
-.d-off.modify-overlay{
+.d-off.modify-overlay {
     opacity: 0;
     visibility: hidden;
 }
@@ -410,7 +418,7 @@ h1 {
     justify-content: center;
     visibility: visible;
     opacity: 1;
-    transition: opacity 1s ease, visibility 0.3s ease , background-color 1s;
+    transition: opacity 1s ease, visibility 0.3s ease, background-color 1s;
     user-select: none;
 }
 
@@ -423,18 +431,20 @@ h1 {
     padding: 20px;
     position: relative;
 }
+
 .preview-col .card {
     height: 100%;
     position: relative;
 }
 
-.preview-card-title{
+.preview-card-title {
     display: flex;
     justify-content: center;
     gap: 5px;
     border: solid 1px black;
     cursor: pointer;
 }
+
 .preview-undo-btn {
     position: absolute;
     top: -6px;
@@ -442,7 +452,8 @@ h1 {
     z-index: 1;
     cursor: pointer;
 }
-.confirm-preview-button{
+
+.confirm-preview-button {
     margin: 15px 0 0 15px;
     padding: 7px 10px;
     background-color: #149e97;
@@ -460,7 +471,7 @@ h1 {
     transform: translateX(-50%);
 }
 
-.confirm-preview-button:hover{
+.confirm-preview-button:hover {
     background-color: #44b4af;
 }
 
@@ -473,24 +484,25 @@ h1 {
     display: none;
 }
 
-.to-do-element.checked{
-    
+.to-do-element.checked {
+
     text-decoration-line: line-through;
     background-color: #10564F;
 
 
-      
+
 }
+
 /* COLOR PALETTE */
 
 .champagne-bg {
     background-color: #EEE0CB;
-    
+
 }
 
 .celadon-bg {
     background-color: #A7E8BD;
-    
+
 }
 
 .bluegray-bg {
@@ -510,7 +522,7 @@ h1 {
 
 .tangerine-bg {
     background-color: #D1913E;
-    
+
 }
 
 .scarlet-bg {
@@ -520,21 +532,27 @@ h1 {
 
 .mistyblue-bg {
     background-color: #C1C2D0;
-    
+
 }
 
 .orange-bg {
     background-color: #FF8300;
     color: white;
 }
-.random-bg{
+
+.random-bg {
     animation: bgcolors 5s infinite;
 }
-.fa-question{
+
+.fa-question {
     animation: colors 4s infinite;
 }
 
 
+
+
+
+/* --------------------------------------------------------------------------------------------------------------- */
 /* animazioni */
 @keyframes vibration {
     0% {
@@ -608,17 +626,19 @@ h1 {
 }
 
 @keyframes popup {
-	0%,
-	50%,
-	100% {
-		opacity: 1;
-	}
 
-	25%,
-	75% {
-		opacity: 0;
-	}
+    0%,
+    50%,
+    100% {
+        opacity: 1;
+    }
+
+    25%,
+    75% {
+        opacity: 0;
+    }
 }
+
 @keyframes bgcolors {
     0% {
         background-color: #10564F;
@@ -639,8 +659,9 @@ h1 {
     100% {
         background-color: #A92420;
     }
-       
+
 }
+
 @keyframes colors {
     0% {
         color: white;
@@ -662,17 +683,109 @@ h1 {
         color: white;
     }
 }
-@keyframes exit {
-	0% {
-		opacity: 1;
-		transform: scale(1);
-	}
 
-	100% {
-		opacity: 0;
-		transform: scale(0.6);
-	}
+@keyframes exit {
+    0% {
+        opacity: 1;
+        transform: scale(1);
+    }
+
+    100% {
+        opacity: 0;
+        transform: scale(0.6);
+    }
 }
+
+@keyframes entrance {
+    0% {
+        animation-timing-function: ease-in;
+        opacity: 0;
+        transform: translateY(-250px);
+    }
+
+    38% {
+        animation-timing-function: ease-out;
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    55% {
+        animation-timing-function: ease-in;
+        transform: translateY(-65px);
+    }
+
+    72% {
+        animation-timing-function: ease-out;
+        transform: translateY(0);
+    }
+
+    81% {
+        animation-timing-function: ease-in;
+        transform: translateY(-28px);
+    }
+
+    90% {
+        animation-timing-function: ease-out;
+        transform: translateY(0);
+    }
+
+    95% {
+        animation-timing-function: ease-in;
+        transform: translateY(-8px);
+    }
+
+    100% {
+        animation-timing-function: ease-out;
+        transform: translateY(0);
+    }
+}
+
+@keyframes exitDown {
+    0% {
+        animation-timing-function: ease-out;
+        transform: translateY(0);
+    }
+
+    5% {
+        animation-timing-function: ease-in;
+        transform: translateY(30px);
+    }
+
+    15% {
+        animation-timing-function: ease-out;
+        transform: translateY(0);
+    }
+
+    25% {
+        animation-timing-function: ease-in;
+        transform: translateY(38px);
+    }
+
+    38% {
+        animation-timing-function: ease-out;
+        transform: translateY(0);
+    }
+
+    52% {
+        animation-timing-function: ease-in;
+        transform: translateY(75px);
+    }
+
+    70% {
+        animation-timing-function: ease-out;
+        transform: translateY(0);
+    }
+
+    85% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0;
+        transform: translateY(800px);
+    }
+}
+
 .vibration-el {
     animation: vibration 0.2s infinite;
 }
@@ -690,10 +803,136 @@ h1 {
 .popup {
     animation: popup 0.5s normal forwards;
 }
-.exit{
+
+.exit {
     animation: exit 1s ease 0s 1 normal forwards;
 }
 
+.pulse {
+    -webkit-animation-name: pulse;
+    animation-name: pulse;
+    -webkit-animation-duration: 1s;
+    animation-duration: 1s;
+    -webkit-animation-fill-mode: both;
+    animation-fill-mode: both;
+}
+
+@-webkit-keyframes pulse {
+    0% {
+        -webkit-transform: scale3d(1, 1, 1);
+        transform: scale3d(1, 1, 1);
+    }
+
+    50% {
+        -webkit-transform: scale3d(1.05, 1.05, 1.05);
+        transform: scale3d(1.05, 1.05, 1.05);
+    }
+
+    100% {
+        -webkit-transform: scale3d(1, 1, 1);
+        transform: scale3d(1, 1, 1);
+    }
+}
+
+@keyframes pulse {
+    0% {
+        -webkit-transform: scale3d(1, 1, 1);
+        transform: scale3d(1, 1, 1);
+    }
+
+    50% {
+        -webkit-transform: scale3d(1.05, 1.05, 1.05);
+        transform: scale3d(1.05, 1.05, 1.05);
+    }
+
+    100% {
+        -webkit-transform: scale3d(1, 1, 1);
+        transform: scale3d(1, 1, 1);
+    }
+}
+
+.rubberBand {
+    -webkit-animation-name: rubberBand;
+    animation-name: rubberBand;
+    -webkit-animation-duration: 1s;
+    animation-duration: 1s;
+    -webkit-animation-fill-mode: both;
+    animation-fill-mode: both;
+}
+
+@-webkit-keyframes rubberBand {
+    0% {
+        -webkit-transform: scale3d(1, 1, 1);
+        transform: scale3d(1, 1, 1);
+    }
+
+    30% {
+        -webkit-transform: scale3d(1.25, 0.75, 1);
+        transform: scale3d(1.25, 0.75, 1);
+    }
+
+    40% {
+        -webkit-transform: scale3d(0.75, 1.25, 1);
+        transform: scale3d(0.75, 1.25, 1);
+    }
+
+    50% {
+        -webkit-transform: scale3d(1.15, 0.85, 1);
+        transform: scale3d(1.15, 0.85, 1);
+    }
+
+    65% {
+        -webkit-transform: scale3d(.95, 1.05, 1);
+        transform: scale3d(.95, 1.05, 1);
+    }
+
+    75% {
+        -webkit-transform: scale3d(1.05, .95, 1);
+        transform: scale3d(1.05, .95, 1);
+    }
+
+    100% {
+        -webkit-transform: scale3d(1, 1, 1);
+        transform: scale3d(1, 1, 1);
+    }
+}
+
+@keyframes rubberBand {
+    0% {
+        -webkit-transform: scale3d(1, 1, 1);
+        transform: scale3d(1, 1, 1);
+    }
+
+    30% {
+        -webkit-transform: scale3d(1.25, 0.75, 1);
+        transform: scale3d(1.25, 0.75, 1);
+    }
+
+    40% {
+        -webkit-transform: scale3d(0.75, 1.25, 1);
+        transform: scale3d(0.75, 1.25, 1);
+    }
+
+    50% {
+        -webkit-transform: scale3d(1.15, 0.85, 1);
+        transform: scale3d(1.15, 0.85, 1);
+    }
+
+    65% {
+        -webkit-transform: scale3d(.95, 1.05, 1);
+        transform: scale3d(.95, 1.05, 1);
+    }
+
+    75% {
+        -webkit-transform: scale3d(1.05, .95, 1);
+        transform: scale3d(1.05, .95, 1);
+    }
+
+    100% {
+        -webkit-transform: scale3d(1, 1, 1);
+        transform: scale3d(1, 1, 1);
+    }
+}
 
 
 /* dark mode */
@@ -715,57 +954,74 @@ h1 {
     border: 2px solid rgb(255, 255, 255);
     color: rgb(255, 255, 255);
 }
-.dark-mode .dark-button:hover{
+
+.dark-mode .dark-button:hover {
     background-color: rgb(58, 57, 57);
 }
-.dark-mode .card{
-    background-color:rgb(65, 65, 65) ;
+
+.dark-mode .card {
+    background-color: rgb(65, 65, 65);
     border-radius: 2px;
-    
-}
-.dark-mode .card-title{
-    color:white
-}
-.dark-mode .add-button,
-.dark-mode .modify-button{
-    background-color:rgb(16, 16, 16) ;
-}
-.dark-mode .add-button:hover,
-.dark-mode .modify-button:hover{
-    background-color: rgb(58, 57, 57);
-}
-.dark-mode .trash img{
-    opacity: 1;
-}
-.dark-mode .overlay-container{
-    background-color:  rgba(16, 16, 16, 0.897);
 
 }
+
+.dark-mode .card-title {
+    color: white
+}
+
+.dark-mode .add-button,
+.dark-mode .modify-button,
+.dark-mode .todolist-button {
+    background-color: rgb(16, 16, 16);
+}
+
+.dark-mode .add-button:hover,
+.dark-mode .modify-button:hover,
+.dark-mode .todolist-button:hover {
+    background-color: rgb(58, 57, 57);
+}
+
+.dark-mode .trash img {
+    opacity: 1;
+}
+
+.dark-mode .overlay-container {
+    background-color: rgba(16, 16, 16, 0.897);
+
+}
+
 .dark-mode .color-section>*.focus,
-.dark-mode .icon.focus{
+.dark-mode .icon.focus {
     outline: 3px solid #145C9E;
 }
-.dark-mode .icon.focus{
-    background-color:#5298da;
+
+.dark-mode .icon.focus {
+    background-color: #5298da;
 }
-.dark-mode .icon:hover{
-    background-color:#2373be;
+
+.dark-mode .icon:hover {
+    background-color: #2373be;
 }
-.dark-mode #confirm-button{
-    background-color:#145C9E;
+
+.dark-mode #confirm-button {
+    background-color: #145C9E;
 }
-.dark-mode #confirm-button:hover{
-    background-color:#2373be;
+
+.dark-mode #confirm-button:hover {
+    background-color: #2373be;
 }
-.dark-mode .delete-section{
-    background-color:rgb(25, 25, 25) ;
+
+.dark-mode .delete-section {
+    background-color: rgb(25, 25, 25);
 }
+
 /* media querriers */
 @media (max-width: 2000px) {
     .container {
         max-width: 1024px;
         margin: 0 auto;
     }
+
     .card-body {
         width: 100%;
         min-height: 500px;

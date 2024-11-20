@@ -135,7 +135,7 @@ addForm.addEventListener('submit', function (event) {
         removeColorFocus()
         overlayContainer.classList.add('d-off')
         overlayContainer.classList.remove('overflow-h')
-        toDoEl = createTask('div', ['to-do-element', color], toDoText.value, icon, el => (el.draggable = true))
+        toDoEl = createTask('div', ['to-do-element', color ], toDoText.value, icon, el => (el.draggable = true))
 
         toDoEl.style = misteryColor
 
@@ -152,6 +152,7 @@ addForm.addEventListener('submit', function (event) {
         color = null
         misteryColor = null
         arrayColor = []
+       
 
     }
 
@@ -198,6 +199,16 @@ for (let i = 0; i < deleteColBtn.length; i++) {
         }
     })
 }
+// aggiungi colonna
+addColPreviewBtn.addEventListener('click', function (event) {
+    event.preventDefault()
+    confirmPreviewBtn.classList.remove('d-none')
+    let tempPreviewCol = document.querySelectorAll('.preview-col .col.d-none')
+    tempPreviewCol[0].classList.remove('d-none')
+    if(tempPreviewCol.length === 1){
+        addCol.classList.add('d-none')
+    }
+})
 
 // conferma dei dati della personalizzazione
 previewForm.addEventListener('submit', function (event) {
@@ -220,16 +231,6 @@ previewForm.addEventListener('submit', function (event) {
      }
 
   })
-// aggiungi colonna
-addColPreviewBtn.addEventListener('click', function (event) {
-    event.preventDefault()
-    confirmPreviewBtn.classList.remove('d-none')
-    let tempPreviewCol = document.querySelectorAll('.preview-col .col.d-none')
-    tempPreviewCol[0].classList.remove('d-none')
-    if(tempPreviewCol.length === 1){
-        addCol.classList.add('d-none')
-    }
-})
 
 
 // chiusura overlay
@@ -260,10 +261,15 @@ toDoBtn.addEventListener('click', function () {
     const count = previewCard.length - tempPreviewCol.length
     for (let i = 0; i < mainCols.length; i++) {
         if(!toDoCol.classList.contains('d-none')){
-            mainCols[i].classList.add('d-none')  
+        
+                mainCols[i].classList.add('d-none')  
+          
+            
         } else{
             for (let y = 0; y < count; y++) {
+                
                 mainCols[y].classList.remove('d-none')
+            
                 
             }
             
@@ -417,6 +423,62 @@ function removeColorFocus() {
     }
 }
 
+// funzione di rinominazione colonne principali
+function renameCol(arrayOne, arrayTwo, arrayTree) {
+    for (let i = 0; i < arrayOne.length; i++) {
+
+        const inputTextPreview = arrayOne[i]
+        const colText = arrayTwo[i];
+        const previewBtn = arrayTree[i]
+        if (inputTextPreview.value) {
+            colText.innerHTML = inputTextPreview.value
+            inputTextPreview.classList.add('d-none')
+            previewBtn.classList.remove('d-none')
+        }
+    }
+}
+// funzione di rinominazione colonne in preview
+function renameColPreview(arrayOne, arrayTwo) {
+    for (let i = 0; i < arrayOne.length; i++) {
+        const colTextPreview = arrayOne[i]
+        const colText = arrayTwo[i];
+        colTextPreview.innerHTML = colText.innerHTML
+    }
+}
+// funzione di rimozione colonne principali
+function removeCol(arrayOne, arrayTwo) {
+    for (let i = 0; i < arrayOne.length; i++) {
+
+        const previewCard = arrayOne[i]
+        const mainCol = arrayTwo[i];
+
+        if (previewCard.dataset.delete === 'true') {
+            mainCol.dataset.delete = 'true'
+            mainCol.classList.add('d-none')
+        }
+
+
+
+
+    }
+}
+// funzione di aggiunta possibilita di check nella to do list mode
+function addEventToDoTask(){
+    let toDoTask = document.querySelectorAll('.to-do-col .to-do-element')
+   
+    for (let i = 0; i < toDoTask.length; i++) {
+        
+        toDoTask[i].addEventListener('click',function(){
+            console.log('sto cliccando',this)
+            this.classList.toggle('checked')
+        })
+        
+    }
+}
+
+
+
+
 // utilities function
 function createTask(
     tagName,
@@ -504,53 +566,9 @@ function getRandomInt(min, max) {
     return Math.floor(Math.random() * (max - min)) + min;
 }
 
-function renameCol(arrayOne, arrayTwo, arrayTree) {
-    for (let i = 0; i < arrayOne.length; i++) {
-
-        const inputTextPreview = arrayOne[i]
-        const colText = arrayTwo[i];
-        const previewBtn = arrayTree[i]
-        if (inputTextPreview.value) {
-            colText.innerHTML = inputTextPreview.value
-            inputTextPreview.classList.add('d-none')
-            previewBtn.classList.remove('d-none')
-        }
-    }
-}
-
-function renameColPreview(arrayOne, arrayTwo) {
-    for (let i = 0; i < arrayOne.length; i++) {
-        const colTextPreview = arrayOne[i]
-        const colText = arrayTwo[i];
-        colTextPreview.innerHTML = colText.innerHTML
-    }
-}
-
-function removeCol(arrayOne, arrayTwo) {
-    for (let i = 0; i < arrayOne.length; i++) {
-
-        const previewCard = arrayOne[i]
-        const mainCol = arrayTwo[i];
-
-        if (previewCard.dataset.delete === 'true') {
-            mainCol.dataset.delete = 'true'
-            mainCol.classList.add('d-none')
-        }
 
 
 
 
-    }
-}
-function addEventToDoTask(){
-    let toDoTask = document.querySelectorAll('.to-do-col .to-do-element')
-   
-    for (let i = 0; i < toDoTask.length; i++) {
-        
-        toDoTask[i].addEventListener('click',function(){
-            console.log('sto cliccando',this)
-            this.classList.toggle('checked')
-        })
-        
-    }
-}
+
+;
