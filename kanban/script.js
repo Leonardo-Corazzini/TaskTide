@@ -184,7 +184,6 @@ for (let i = 0; i < renameColBtn.length; i++) {
     renameColBtn[i].addEventListener('click', function () {
         this.classList.add('d-none')
         confirmPreviewBtn.classList.remove('d-none')
-        console.log(confirmPreviewBtn)
         for (let i = 0; i < renameColText.length; i++) {
             if (this.dataset.cardindex === renameColText[i].dataset.cardindex)
                 renameColText[i].classList.remove('d-none')
@@ -200,131 +199,43 @@ for (let i = 0; i < deleteColBtn.length; i++) {
         addCol.classList.remove('d-none')
         for (let i = 0; i < previewCard.length; i++) {
             if (this.dataset.cardindex === previewCard[i].dataset.cardindex) {
-                if (!eliminateCol.includes(previewCard[i].dataset.cardindex)) {
-
-                    eliminateCol.push(previewCard[i].dataset.cardindex)
-
-                }
-
                 previewCard[i].dataset.delete = 'true'
-                previewCard[i].remove()
+                previewCard[i].classList.add('d-none')
             }
         }
     })
 }
-let eliminateCol = []
+
 // conferma dei dati della personalizzazione
 previewForm.addEventListener('submit', function (event) {
     event.preventDefault()
     modOverlayContainer.classList.add('d-off')
     modOverlayContainer.classList.remove('overflow-h')
     confirmPreviewBtn.classList.add('d-none')
-
+   
     renameCol(renameColText, cardTitle, renameColBtn)
 
     renameColPreview(previewCardTitle, cardTitle)
     
     removeCol(previewCard, mainCols)
-    previewCard = document.querySelectorAll('.preview-col .col')
 
-    mainCols = document.querySelectorAll('.main-col')
-
-    if (previewCard.length > mainCols.length) {
-        console.log(eliminateCol)
-        let createCount = previewCard.length - mainCols.length
-        if (createCount === 1) {
-            const newMainCol4 = newMainCol(mainCols.length + 1)
-            mainContent.appendChild(newMainCol4)
-        } else if (createCount === 2) {
-            const newMainCol3 = newMainCol(mainCols.length + 1)
-            mainContent.appendChild(newMainCol3)
-            const newMainCol4 = newMainCol(mainCols.length + 2)
-            mainContent.appendChild(newMainCol4)
-        } else if (createCount === 3) {
-            const newMainCol2 = newMainCol(mainCols.length + 1)
-            mainContent.appendChild(newMainCol2)
-            const newMainCol3 = newMainCol(mainCols.length + 2)
-            mainContent.appendChild(newMainCol3)
-            const newMainCol4 = newMainCol(mainCols.length + 3)
-            mainContent.appendChild(newMainCol4)
-        } else {
-            const newMainCol1 = newMainCol(mainCols.length + 1)
-            mainContent.appendChild(newMainCol1)
-            const newMainCol2 = newMainCol(mainCols.length + 2)
-            mainContent.appendChild(newMainCol2)
-            const newMainCol3 = newMainCol(mainCols.length + 3)
-            mainContent.appendChild(newMainCol3)
-            const newMainCol4 = newMainCol(mainCols.length + 4)
-            mainContent.appendChild(newMainCol4)
+     previewCard = document.querySelectorAll('.preview-col .col')
+     for (let i = 0; i < previewCard.length; i++){
+        if(!previewCard[i].classList.contains('d-none')){
+            mainCols[i].classList.remove('d-none')
         }
-    }
-})
-function newMainCol(index) {
-    const col = myCreateCol('div', ['main-col', 'col'], [
-        myCreateCol('div', ['card'], [
-            myCreateCol('div', ['card-title'], [
-                myCreateCol('h2', [], 'Aperto', el => el.dataset.cardindex = index)
-            ]), myCreateCol('div', ['card-body'])
-        ])
-    ], function (el) {
-        el.dataset.cardindex = index
-        el.dataset.delete = 'false'
-    })
-    return col
-}
+     }
+
+  })
 // aggiungi colonna
 addColPreviewBtn.addEventListener('click', function (event) {
     event.preventDefault()
     confirmPreviewBtn.classList.remove('d-none')
-    const newCol = myCreateCol('div', ['col'], [
-        myCreateCol('div', ['card'],
-            [myCreateCol('div', ['preview-card-title'], [
-                myCreateCol('p'), myCreateCol('i', ['fa-solid', 'fa-pencil'])]),
-            myCreateCol('input', ['rename-col', 'd-none']),
-            myCreateCol('div', ['preview-undo-btn'], [
-                myCreateCol('i', ['fa-solid', 'fa-circle-xmark'])
-            ], el => (el.dataset.cardindex = Math.min(...eliminateCol)))
-
-
-            ])], function (el) {
-
-                el.dataset.cardindex = Math.min(...eliminateCol)
-                el.dataset.delete = 'false'
-            })
-    addCol.before(newCol)
-    deletePreviewBtn()
-    console.log('Ho inserito la card con questo index:', Math.min(...eliminateCol))
-    const tempArray = eliminateCol.filter((num) => num != Math.min(...eliminateCol))
-    eliminateCol = [...tempArray]
-    previewCard = document.querySelectorAll('.preview-col .col')
-
-    if (previewCard.length >= 4) {
-        addCol.classList.add('d-none')
-    }
+    let tempPreviewCol = document.querySelectorAll('.preview-col .col.d-none')
+    tempPreviewCol[0].classList.remove('d-none')
 })
-function deletePreviewBtn() {
-    deleteColBtn = document.querySelectorAll('.preview-undo-btn')
-    for (let i = 0; i < deleteColBtn.length; i++) {
-        deleteColBtn[i].addEventListener('click', function () {
-            confirmPreviewBtn.classList.remove('d-none')
-            addCol.classList.remove('d-none')
-            previewCard = document.querySelectorAll('.preview-col .col')
 
-            for (let i = 0; i < previewCard.length; i++) {
-                if (this.dataset.cardindex === previewCard[i].dataset.cardindex) {
-                    if (!eliminateCol.includes(previewCard[i].dataset.cardindex)) {
 
-                        eliminateCol.push(previewCard[i].dataset.cardindex)
-
-                    }
-
-                    previewCard[i].dataset.delete = 'true'
-                    previewCard[i].remove()
-                }
-            }
-        })
-    }
-}
 // chiusura overlay
 
 closeBtn2.addEventListener('click', function (event) {
@@ -615,7 +526,7 @@ function removeCol(arrayOne, arrayTwo) {
 
         if (elementPreview.dataset.delete === 'true') {
             elementCol.dataset.delete = 'true'
-            elementCol.remove()
+            elementCol.classList.add('d-none')
         }
 
 
