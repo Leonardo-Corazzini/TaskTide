@@ -46,13 +46,13 @@ let deleteColBtn = document.querySelectorAll('.preview-undo-btn')
 const renameColText = document.querySelectorAll('.rename-col')
 const cardTitle = document.querySelectorAll('.card-title h2')
 const previewCardTitle = document.querySelectorAll('.preview-card-title p')
-const mainCols = document.querySelectorAll('.main-col')
+let mainCols = document.querySelectorAll('.main-col')
 const confirmPreviewBtn = document.querySelector('.confirm-preview-button')
 const addColPreviewBtn = document.querySelector('.add-col-preview-button')
 const closeBtn2 = document.querySelector('.modify-overlay .closed-btn')
 const addCol = document.querySelector('.add-col')
-
-
+const mainContent = document.querySelector('.main-content')
+const toDoCol = document.querySelector('.to-do-col')
 
 // overlay per elimazione task
 const deleteMessage = document.querySelector('.overlay-transparent-undo')
@@ -139,17 +139,17 @@ addForm.addEventListener('submit', function (event) {
 
         toDoEl.style = misteryColor
 
-        if(mainCols[0].classList.contains('d-none')) {
-            cards[4].appendChild(toDoEl) 
-        } else if(mainCols[0].dataset.delete === 'false'){
+        if (mainCols[0].classList.contains('d-none')) {
+            cards[4].appendChild(toDoEl)
+        } else if (mainCols[0].dataset.delete === 'false') {
             cards[0].appendChild(toDoEl)
-        }else if (mainCols[0].dataset.delete === 'true' && mainCols[1].dataset.delete === 'false') {
+        } else if (mainCols[0].dataset.delete === 'true' && mainCols[1].dataset.delete === 'false') {
             cards[1].appendChild(toDoEl)
         } else if (mainCols[1].dataset.delete === 'true' && mainCols[2].dataset.delete === 'false') {
             cards[2].appendChild(toDoEl)
         } else if (mainCols[2].dataset.delete === 'true' && mainCols[3].dataset.delete === 'false') {
             cards[3].appendChild(toDoEl)
-        } 
+        }
 
         toDoEl.addEventListener('dragstart', dragStart)
         toDoEl.addEventListener('dragend', dragEnd)
@@ -171,7 +171,7 @@ closeBtn.addEventListener('click', function (event) {
 
 
 // -----------------------------------MODIFICA CARD-----------------------------------------------------
-let eliminateCol = ''
+
 // ascolto bottono modifca
 modBtn.addEventListener('click', function () {
     modOverlayContainer.classList.remove('d-off')
@@ -200,14 +200,19 @@ for (let i = 0; i < deleteColBtn.length; i++) {
         addCol.classList.remove('d-none')
         for (let i = 0; i < previewCard.length; i++) {
             if (this.dataset.cardindex === previewCard[i].dataset.cardindex) {
-                eliminateCol = previewCard[i].dataset.cardindex
+                if (!eliminateCol.includes(previewCard[i].dataset.cardindex)) {
+
+                    eliminateCol.push(previewCard[i].dataset.cardindex)
+
+                }
+
                 previewCard[i].dataset.delete = 'true'
                 previewCard[i].remove()
             }
         }
     })
 }
-
+let eliminateCol = []
 // conferma dei dati della personalizzazione
 previewForm.addEventListener('submit', function (event) {
     event.preventDefault()
@@ -220,51 +225,99 @@ previewForm.addEventListener('submit', function (event) {
     renameColPreview(previewCardTitle, cardTitle)
 
     removeCol(previewCard, mainCols)
+    previewCard = document.querySelectorAll('.preview-col .col')
 
+    mainCols = document.querySelectorAll('.main-col')
+
+    if (previewCard.length > mainCols.length) {
+        console.log(eliminateCol)
+        let createCount = previewCard.length - mainCols.length
+        if (createCount === 1) {
+            const newMainCol4 = newMainCol(4)
+            mainContent.appendChild(newMainCol4)
+        } else if (createCount === 2) {
+            const newMainCol3 = newMainCol(3)
+            mainContent.appendChild(newMainCol3)
+            const newMainCol4 = newMainCol(4)
+            mainContent.appendChild(newMainCol4)
+        } else if (createCount === 3) {
+            const newMainCol2 = newMainCol(2)
+            mainContent.appendChild(newMainCol2)
+            const newMainCol3 = newMainCol(3)
+            mainContent.appendChild(newMainCol3)
+            const newMainCol4 = newMainCol(4)
+            mainContent.appendChild(newMainCol4)
+        } else {
+            const newMainCol1 = newMainCol(1)
+            mainContent.appendChild(newMainCol1)
+            const newMainCol2 = newMainCol(2)
+            mainContent.appendChild(newMainCol2)
+            const newMainCol3 = ewMainCol(3)
+            mainContent.appendChild(newMainCol3)
+            const newMainCol4 = newMainCol(4)
+            mainContent.appendChild(newMainCol4)
+        }
+    }
 })
-
+function newMainCol(index) {
+    const col = myCreateCol('div', ['main-col', 'col'], [
+        myCreateCol('div', ['card'], [
+            myCreateCol('div', ['card-title'], [
+                myCreateCol('h2', [], 'Aperto', el => el.dataset.cardindex = index)
+            ]), myCreateCol('div', ['card-body'])
+        ])
+    ], function (el) {
+        el.dataset.cardindex = index
+        el.dataset.delete = 'false'
+    })
+    return col
+}
 // aggiungi colonna
-/* <div class="col" data-cardindex="1" data-delete="false">
-<div class="card">
-    <div class="preview-card-title" data-cardindex="1">
-        <p>In Coda</p>
-        <i class="fa-solid fa-pencil"></i>
-    </div>
-    <input type="text" placeholder="In Coda" data-cardindex="1" class="rename-col d-none">
-    <div data-cardindex="1" class="preview-undo-btn"><i class="fa-solid fa-circle-xmark"></i></div>
-</div>
-</div> */
-addColPreviewBtn.addEventListener('click', function(event){
+addColPreviewBtn.addEventListener('click', function (event) {
     event.preventDefault()
-    const newCol = myCreateCol('div',['col'],[
-        myCreateCol('div',['card'],
-            [myCreateCol('div',['preview-card-title'],[
-                myCreateCol('p'),myCreateCol('i',['fa-solid','fa-pencil'])]),
-            myCreateCol('input',['rename-col','d-none']),
-            myCreateCol('div',['preview-undo-btn'],[
-                myCreateCol('i',['fa-solid','fa-circle-xmark'])
-            ],el => (el.dataset.cardindex = eliminateCol))
+    confirmPreviewBtn.classList.remove('d-none')
+    const newCol = myCreateCol('div', ['col'], [
+        myCreateCol('div', ['card'],
+            [myCreateCol('div', ['preview-card-title'], [
+                myCreateCol('p'), myCreateCol('i', ['fa-solid', 'fa-pencil'])]),
+            myCreateCol('input', ['rename-col', 'd-none']),
+            myCreateCol('div', ['preview-undo-btn'], [
+                myCreateCol('i', ['fa-solid', 'fa-circle-xmark'])
+            ], el => (el.dataset.cardindex = Math.min(...eliminateCol)))
 
-        ])],el => (el.dataset.delete = 'false',
-            el.dataset.cardindex = eliminateCol
-        ))
-    previewForm.appendChild(newCol)
+
+            ])], function (el) {
+
+                el.dataset.cardindex = Math.min(...eliminateCol)
+                el.dataset.delete = 'false'
+            })
+    addCol.before(newCol)
     deletePreviewBtn()
-    if(previewCard.length > 1){
+    console.log('Ho inserito la card con questo index:', Math.min(...eliminateCol))
+    const tempArray = eliminateCol.filter((num) => num != Math.min(...eliminateCol))
+    eliminateCol = [...tempArray]
+    previewCard = document.querySelectorAll('.preview-col .col')
+
+    if (previewCard.length >= 4) {
         addCol.classList.add('d-none')
-    }    
+    }
 })
-function deletePreviewBtn (){
+function deletePreviewBtn() {
     deleteColBtn = document.querySelectorAll('.preview-undo-btn')
     for (let i = 0; i < deleteColBtn.length; i++) {
         deleteColBtn[i].addEventListener('click', function () {
             confirmPreviewBtn.classList.remove('d-none')
             addCol.classList.remove('d-none')
             previewCard = document.querySelectorAll('.preview-col .col')
-            console.log(previewCard)
+
             for (let i = 0; i < previewCard.length; i++) {
                 if (this.dataset.cardindex === previewCard[i].dataset.cardindex) {
-                    eliminateCol = previewCard[i].dataset.cardindex
+                    if (!eliminateCol.includes(previewCard[i].dataset.cardindex)) {
+
+                        eliminateCol.push(previewCard[i].dataset.cardindex)
+
+                    }
+
                     previewCard[i].dataset.delete = 'true'
                     previewCard[i].remove()
                 }
@@ -283,17 +336,17 @@ closeBtn2.addEventListener('click', function (event) {
         renameColBtn[i].classList.remove('d-none')
         confirmPreviewBtn.classList.add('d-none')
         renameColText[i].classList.add('d-none')
-        renameColText[i].value=''
+        renameColText[i].value = ''
     }
 })
 
 
 // -----------------------------------TO DO LIST MODE-----------------------------------------------------
-toDoBtn.addEventListener('click',function(){
+toDoBtn.addEventListener('click', function () {
     modBtn.classList.toggle('d-none')
     box.classList.toggle('d-none')
     checkBox.classList.toggle('d-none')
-    mainCols[4].classList.toggle('d-none')
+    toDoCol.classList.toggle('d-none')
     mainCols[0].classList.toggle('d-none')
     mainCols[1].classList.toggle('d-none')
     mainCols[2].classList.toggle('d-none')
@@ -476,34 +529,34 @@ function myCreateCol(
     classList = [],
     content = [],
     callback = false
-  ) {
+) {
     // Creo l'elemento
     const el = document.createElement(tagnName);
-  
+
     // Aggiungo le classi
     if (classList.length > 0) {
-      el.classList.add(...classList);
+        el.classList.add(...classList);
     }
-  
+
     // Esegui la callback passando l'elemento
     if (callback) {
-      callback(el);
+        callback(el);
     }
-  
+
     // Contenuto
     if (Array.isArray(content)) {
-      for (let i = 0; i < content.length; i++) {
-        el.appendChild(content[i]);
-      }
+        for (let i = 0; i < content.length; i++) {
+            el.appendChild(content[i]);
+        }
     } else if (content instanceof HTMLElement) {
-      el.appendChild(content);
+        el.appendChild(content);
     } else if (typeof content === "string") {
-      el.innerHTML = content;
+        el.innerHTML = content;
     } else {
-      console.error("Non posso aggiungere l'elemento");
+        console.error("Non posso aggiungere l'elemento");
     }
     return el;
-  }
+}
 
 
 function randomColor() {
