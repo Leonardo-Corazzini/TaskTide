@@ -223,7 +223,7 @@ previewForm.addEventListener('submit', function (event) {
     renameCol(renameColText, cardTitle, renameColBtn)
 
     renameColPreview(previewCardTitle, cardTitle)
-
+    
     removeCol(previewCard, mainCols)
     previewCard = document.querySelectorAll('.preview-col .col')
 
@@ -233,28 +233,28 @@ previewForm.addEventListener('submit', function (event) {
         console.log(eliminateCol)
         let createCount = previewCard.length - mainCols.length
         if (createCount === 1) {
-            const newMainCol4 = newMainCol(4)
+            const newMainCol4 = newMainCol(mainCols.length + 1)
             mainContent.appendChild(newMainCol4)
         } else if (createCount === 2) {
-            const newMainCol3 = newMainCol(3)
+            const newMainCol3 = newMainCol(mainCols.length + 1)
             mainContent.appendChild(newMainCol3)
-            const newMainCol4 = newMainCol(4)
+            const newMainCol4 = newMainCol(mainCols.length + 2)
             mainContent.appendChild(newMainCol4)
         } else if (createCount === 3) {
-            const newMainCol2 = newMainCol(2)
+            const newMainCol2 = newMainCol(mainCols.length + 1)
             mainContent.appendChild(newMainCol2)
-            const newMainCol3 = newMainCol(3)
+            const newMainCol3 = newMainCol(mainCols.length + 2)
             mainContent.appendChild(newMainCol3)
-            const newMainCol4 = newMainCol(4)
+            const newMainCol4 = newMainCol(mainCols.length + 3)
             mainContent.appendChild(newMainCol4)
         } else {
-            const newMainCol1 = newMainCol(1)
+            const newMainCol1 = newMainCol(mainCols.length + 1)
             mainContent.appendChild(newMainCol1)
-            const newMainCol2 = newMainCol(2)
+            const newMainCol2 = newMainCol(mainCols.length + 2)
             mainContent.appendChild(newMainCol2)
-            const newMainCol3 = ewMainCol(3)
+            const newMainCol3 = newMainCol(mainCols.length + 3)
             mainContent.appendChild(newMainCol3)
-            const newMainCol4 = newMainCol(4)
+            const newMainCol4 = newMainCol(mainCols.length + 4)
             mainContent.appendChild(newMainCol4)
         }
     }
