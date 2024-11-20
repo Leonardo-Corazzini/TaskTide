@@ -257,6 +257,8 @@ closeBtn2.addEventListener('click', function (event) {
 
 // -----------------------------------TO DO LIST MODE-----------------------------------------------------
 toDoBtn.addEventListener('click', function () {
+
+    
     modBtn.classList.toggle('d-none')
     box.classList.toggle('d-none')
     checkBox.classList.toggle('d-none')
@@ -274,7 +276,6 @@ toDoBtn.addEventListener('click', function () {
             
         }
     } 
-   
     
 })
 
