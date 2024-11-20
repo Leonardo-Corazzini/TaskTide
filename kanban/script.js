@@ -233,6 +233,9 @@ addColPreviewBtn.addEventListener('click', function (event) {
     confirmPreviewBtn.classList.remove('d-none')
     let tempPreviewCol = document.querySelectorAll('.preview-col .col.d-none')
     tempPreviewCol[0].classList.remove('d-none')
+    if(tempPreviewCol.length === 1){
+        addCol.classList.add('d-none')
+    }
 })
 
 
@@ -521,12 +524,12 @@ function renameColPreview(arrayOne, arrayTwo) {
 function removeCol(arrayOne, arrayTwo) {
     for (let i = 0; i < arrayOne.length; i++) {
 
-        const elementPreview = arrayOne[i]
-        const elementCol = arrayTwo[i];
+        const previewCard = arrayOne[i]
+        const mainCol = arrayTwo[i];
 
-        if (elementPreview.dataset.delete === 'true') {
-            elementCol.dataset.delete = 'true'
-            elementCol.classList.add('d-none')
+        if (previewCard.dataset.delete === 'true') {
+            mainCol.dataset.delete = 'true'
+            mainCol.classList.add('d-none')
         }
 
 
