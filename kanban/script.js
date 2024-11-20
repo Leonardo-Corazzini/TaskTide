@@ -153,7 +153,7 @@ addForm.addEventListener('submit', function (event) {
 
         toDoEl.addEventListener('dragstart', dragStart)
         toDoEl.addEventListener('dragend', dragEnd)
-
+        addEventToDoTask()
         toDoText.value = ''
         icon = null
         color = null
@@ -261,17 +261,20 @@ toDoBtn.addEventListener('click', function () {
     box.classList.toggle('d-none')
     checkBox.classList.toggle('d-none')
     toDoCol.classList.toggle('d-none')
-    
+    let tempPreviewCol = document.querySelectorAll('.preview-col .col.d-none')
+    const count = previewCard.length - tempPreviewCol.length
     for (let i = 0; i < mainCols.length; i++) {
         if(!toDoCol.classList.contains('d-none')){
             mainCols[i].classList.add('d-none')  
         } else{
-            mainCols[i].classList.remove('d-none')
+            for (let y = 0; y < count; y++) {
+                mainCols[y].classList.remove('d-none')
+                
+            }
+            
         }
-        
-        
     } 
-     
+   
     
 })
 
@@ -543,5 +546,17 @@ function removeCol(arrayOne, arrayTwo) {
 
 
 
+    }
+}
+function addEventToDoTask(){
+    let toDoTask = document.querySelectorAll('.to-do-col .to-do-element')
+   
+    for (let i = 0; i < toDoTask.length; i++) {
+        
+        toDoTask[i].addEventListener('click',function(){
+            console.log('sto cliccando',this)
+            this.classList.toggle('checked')
+        })
+        
     }
 }

@@ -473,7 +473,14 @@ h1 {
     display: none;
 }
 
+.to-do-element.checked{
+    
+    text-decoration-line: line-through;
+    background-color: #10564F;
 
+
+      
+}
 /* COLOR PALETTE */
 
 .champagne-bg {
