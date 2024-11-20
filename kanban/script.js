@@ -141,16 +141,9 @@ addForm.addEventListener('submit', function (event) {
 
         if (mainCols[0].classList.contains('d-none')) {
             cards[4].appendChild(toDoEl)
-        } else if (mainCols[0].dataset.delete === 'false') {
+        } else {
             cards[0].appendChild(toDoEl)
-        } else if (mainCols[0].dataset.delete === 'true' && mainCols[1].dataset.delete === 'false') {
-            cards[1].appendChild(toDoEl)
-        } else if (mainCols[1].dataset.delete === 'true' && mainCols[2].dataset.delete === 'false') {
-            cards[2].appendChild(toDoEl)
-        } else if (mainCols[2].dataset.delete === 'true' && mainCols[3].dataset.delete === 'false') {
-            cards[3].appendChild(toDoEl)
         }
-
         toDoEl.addEventListener('dragstart', dragStart)
         toDoEl.addEventListener('dragend', dragEnd)
         addEventToDoTask()
