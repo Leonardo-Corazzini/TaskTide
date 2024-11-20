@@ -261,10 +261,18 @@ toDoBtn.addEventListener('click', function () {
     box.classList.toggle('d-none')
     checkBox.classList.toggle('d-none')
     toDoCol.classList.toggle('d-none')
-    mainCols[0].classList.toggle('d-none')
-    mainCols[1].classList.toggle('d-none')
-    mainCols[2].classList.toggle('d-none')
-    mainCols[3].classList.toggle('d-none')
+    
+    for (let i = 0; i < mainCols.length; i++) {
+        if(!toDoCol.classList.contains('d-none')){
+            mainCols[i].classList.add('d-none')  
+        } else{
+            mainCols[i].classList.remove('d-none')
+        }
+        
+        
+    } 
+     
+    
 })
 
 
