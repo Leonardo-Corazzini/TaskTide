@@ -141,6 +141,8 @@ addForm.addEventListener('submit', function (event) {
 
         if (mainCols[0].classList.contains('d-none')) {
             cards[4].appendChild(toDoEl)
+            toDoEl.innerHTML = toDoEl.innerHTML + `<span class="taskbox"><i class="fa-regular fa-square "></i></span>
+            <span class="taskcheck-box d-none"><i class="fa-regular fa-square-check"></i></span>`
         } else {
             cards[0].appendChild(toDoEl)
         }
@@ -365,9 +367,9 @@ function drop() {
 // aggiunto eventi di drag and drop al cestino
 trashImg.addEventListener('dragenter', function (event) {
     if (document.body.className === 'dark-mode') {
-        trashImg.src = "../img/cestino-darkmode-aperto.png"
+        trashImg.src = "img/cestino-darkmode-aperto.png"
     } else {
-        trashImg.src = "../img/cestino-aperto.png"
+        trashImg.src = "img/cestino-aperto.png"
     }
 
 
@@ -376,9 +378,9 @@ trashImg.addEventListener('dragenter', function (event) {
 
 trashImg.addEventListener('dragleave', function (event) {
     if (document.body.className === 'dark-mode') {
-        trashImg.src = "../img/cestino-darkmode-chiuso.png"
+        trashImg.src = "img/cestino-darkmode-chiuso.png"
     } else {
-        trashImg.src = "../img/cestino-chiuso.png"
+        trashImg.src = "img/cestino-chiuso.png"
     }
 
     console.log('uscito');
@@ -391,9 +393,9 @@ trashImg.addEventListener('dragover', function (event) {
 
 trashImg.addEventListener('drop', function (event) {
     if (document.body.className === 'dark-mode') {
-        trashImg.src = "../img/cestino-darkmode-chiuso.png"
+        trashImg.src = "img/cestino-darkmode-chiuso.png"
     } else {
-        trashImg.src = "../img/cestino-chiuso.png"
+        trashImg.src = "img/cestino-chiuso.png"
     }
     dragItem.remove()
     console.log('sto eliminando');
@@ -465,12 +467,16 @@ function removeCol(arrayOne, arrayTwo) {
 // funzione di aggiunta possibilita di check nella to do list mode
 function addEventToDoTask(){
     let toDoTask = document.querySelectorAll('.to-do-col .to-do-element')
+    let taskBox = document.querySelectorAll('.taskbox')
+    let taskCheck = document.querySelectorAll('.taskcheck-box')
    
     for (let i = 0; i < toDoTask.length; i++) {
         
         toDoTask[i].addEventListener('click',function(){
             console.log('sto cliccando',this)
-            this.classList.toggle('checked')
+            taskBox[i].classList.toggle('d-none')
+            taskCheck[i].classList.toggle('d-none')
+            toDoTask[i].classList.toggle('checked')
         })
         
     }
