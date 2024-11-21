@@ -216,8 +216,6 @@ h1 {
 
 .delete-section {
     background-color: #145C9E;
-    height: 12vh;
-    width: 24vw;
     max-width: 300px;
     z-index: 2;
     display: flex;
@@ -1044,7 +1042,7 @@ h1 {
         font-size: 12px;
     }
     .to-do-col .to-do-element{
-        font-size: 20px;
+        font-size: 17px;
     }
     .form-title {
         color: white;
