@@ -62,8 +62,18 @@ const deleteAllBtn = document.querySelector('.yes')
 
 
 
+document.addEventListener('DOMContentLoaded', function (){
+    axios
+    .get('http://192.168.1.253:3000/save')
+    .then((res) => {
+        console.log(res)
+    })
+    .catch((err) => {
+        console.log(err)
+    })
 
-
+})
+ 
 
 
 // -----------------------------------DARK MODE--------------------------------------------------------
