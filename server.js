@@ -6,8 +6,9 @@ const router = require('./router/router.js')
 app.use(express.static('public'))
 app.use(express.json())
 
+
 app.get('/', (req, res) => {
-    res.sendFile(__dirname + "/public/kanban/index.html")
+    res.sendFile(__dirname + "/public/index.html")
 })
 
 app.use('/save', router)

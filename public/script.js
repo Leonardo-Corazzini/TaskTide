@@ -62,18 +62,25 @@ const deleteAllBtn = document.querySelector('.yes')
 
 
 
-document.addEventListener('DOMContentLoaded', function (){
+document.addEventListener('DOMContentLoaded', function () {
     axios
-    .get('http://192.168.1.253:3000/save')
-    .then((res) => {
-        console.log(res)
-    })
-    .catch((err) => {
-        console.log(err)
-    })
+        .get('http://192.168.1.253:3000/save')
+        .then((res) => {
+            const lastSave = res.data
+            console.log(lastSave)
+            if (lastSave.darkmode === 'on') {
+                document.body.classList.add('dark-mode')
+            } else {
+                document.body.classList.remove('dark-mode')
+            }
+
+        })
+        .catch((err) => {
+            console.log(err)
+        })
 
 })
- 
+
 
 
 // -----------------------------------DARK MODE--------------------------------------------------------
@@ -145,7 +152,7 @@ addForm.addEventListener('submit', function (event) {
         removeColorFocus()
         overlayContainer.classList.add('d-off')
         overlayContainer.classList.remove('overflow-h')
-        toDoEl = createTask('div', ['to-do-element', color ], toDoText.value, icon, el => (el.draggable = true))
+        toDoEl = createTask('div', ['to-do-element', color], toDoText.value, icon, el => (el.draggable = true))
 
         toDoEl.style = misteryColor
 
@@ -156,6 +163,22 @@ addForm.addEventListener('submit', function (event) {
         } else {
             cards[0].appendChild(toDoEl)
         }
+        const save = 
+        {
+            name: 'prova',
+            darkmode: "off"
+        }
+        console.log(JSON.stringify(save))
+        axios
+            .post('http://192.168.1.253:3000/save', save)
+            .then((res) => {
+                console.log('Risposta dal backend:', res.data);
+
+            })
+            .catch((err) => {
+                console.log(err)
+            })
+
         toDoEl.addEventListener('dragstart', dragStart)
         toDoEl.addEventListener('dragend', dragEnd)
         addEventToDoTask()
@@ -164,7 +187,7 @@ addForm.addEventListener('submit', function (event) {
         color = null
         misteryColor = null
         arrayColor = []
-       
+
 
     }
 
@@ -217,7 +240,7 @@ addColPreviewBtn.addEventListener('click', function (event) {
     confirmPreviewBtn.classList.remove('d-none')
     let tempPreviewCol = document.querySelectorAll('.preview-col .col.d-none')
     tempPreviewCol[0].classList.remove('d-none')
-    if(tempPreviewCol.length === 1){
+    if (tempPreviewCol.length === 1) {
         addCol.classList.add('d-none')
     }
 })
@@ -228,21 +251,21 @@ previewForm.addEventListener('submit', function (event) {
     modOverlayContainer.classList.add('d-off')
     modOverlayContainer.classList.remove('overflow-h')
     confirmPreviewBtn.classList.add('d-none')
-   
+
     renameCol(renameColText, cardTitle, renameColBtn)
 
     renameColPreview(previewCardTitle, cardTitle)
-    
+
     removeCol(previewCard, mainCols)
 
-     previewCard = document.querySelectorAll('.preview-col .col')
-     for (let i = 0; i < previewCard.length; i++){
-        if(!previewCard[i].classList.contains('d-none')){
+    previewCard = document.querySelectorAll('.preview-col .col')
+    for (let i = 0; i < previewCard.length; i++) {
+        if (!previewCard[i].classList.contains('d-none')) {
             mainCols[i].classList.remove('d-none')
         }
-     }
+    }
 
-  })
+})
 
 
 // chiusura overlay
@@ -264,7 +287,7 @@ closeBtn2.addEventListener('click', function (event) {
 // -----------------------------------TO DO LIST MODE-----------------------------------------------------
 toDoBtn.addEventListener('click', function () {
 
-    
+
     modBtn.classList.toggle('d-none')
     box.classList.toggle('d-none')
     checkBox.classList.toggle('d-none')
@@ -272,22 +295,22 @@ toDoBtn.addEventListener('click', function () {
     let tempPreviewCol = document.querySelectorAll('.preview-col .col.d-none')
     const count = previewCard.length - tempPreviewCol.length
     for (let i = 0; i < mainCols.length; i++) {
-        if(!toDoCol.classList.contains('d-none')){
-        
-                mainCols[i].classList.add('d-none')  
-          
-            
-        } else{
+        if (!toDoCol.classList.contains('d-none')) {
+
+            mainCols[i].classList.add('d-none')
+
+
+        } else {
             for (let y = 0; y < count; y++) {
-                
+
                 mainCols[y].classList.remove('d-none')
-            
-                
+
+
             }
-            
+
         }
-    } 
-    
+    }
+
 })
 
 
@@ -475,20 +498,20 @@ function removeCol(arrayOne, arrayTwo) {
     }
 }
 // funzione di aggiunta possibilita di check nella to do list mode
-function addEventToDoTask(){
+function addEventToDoTask() {
     let toDoTask = document.querySelectorAll('.to-do-col .to-do-element')
     let taskBox = document.querySelectorAll('.taskbox')
     let taskCheck = document.querySelectorAll('.taskcheck-box')
-   
+
     for (let i = 0; i < toDoTask.length; i++) {
-        
-        toDoTask[i].addEventListener('click',function(){
-            console.log('sto cliccando',this)
+
+        toDoTask[i].addEventListener('click', function () {
+            console.log('sto cliccando', this)
             taskBox[i].classList.toggle('d-none')
             taskCheck[i].classList.toggle('d-none')
             toDoTask[i].classList.toggle('checked')
         })
-        
+
     }
 }
 
