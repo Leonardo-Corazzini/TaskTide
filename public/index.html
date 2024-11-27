@@ -32,7 +32,7 @@
 
                 <div class="main-col col pulse" data-cardindex=1 data-delete="false">
                     <div class="card">
-                        
+
                         <div class="card-body">
                             <div class="card-title">
                                 <h2 data-cardindex="1">In Coda</h2>
@@ -44,7 +44,7 @@
 
                 <div class="main-col col pulse" data-cardindex=2 data-delete="false">
                     <div class="card">
-                       
+
                         <div class="card-body">
                             <div class="card-title">
                                 <h2 data-cardindex="2">Aperto</h2>
@@ -55,7 +55,7 @@
 
                 <div class="main-col col pulse" data-cardindex=3 data-delete="false">
                     <div class="card">
-                        
+
                         <div class="card-body">
                             <div class="card-title">
                                 <h2 data-cardindex="3">In Revisione</h2>
@@ -66,7 +66,7 @@
 
                 <div class="main-col col pulse" data-cardindex=4 data-delete="false">
                     <div class="card">
-                        
+
                         <div class="card-body">
                             <div class="card-title">
                                 <h2 data-cardindex="4">Completato</h2>
@@ -178,6 +178,11 @@
                 </div>
 
             </div>
+            <div class="center">
+                <h3 class="form-title-secondary">Scadenza task:</h3>
+                <input id="to-do-date" type="date">
+
+            </div>
             <div>
                 <button id="undo-button">Annulla</button>
                 <button id="confirm-button">Conferma</button>
@@ -185,7 +190,22 @@
             <i class="fa-regular fa-circle-xmark closed-btn"></i>
         </form>
     </div>
+    <div class="overlay-container-modify-task d-off">
+        <form action="" method="get" id="modify-task">
+            <div class="info-task">
+                <div>
+                    <h3 class="form-title-secondary">Inserisci un commento:</h3>
+                    <input id="to-do-comment" placeholder="Es. task assegnata a Mario" type="text">
+                </div>
+            </div>
+            <div>
+                <button id="undo-task-modify">Annulla</button>
+                <button id="confirm-task-modify">Conferma</button>
+            </div>
+            <i class="fa-regular fa-circle-xmark closed-btn"></i>
+        </form>
 
+    </div>
     <div class="overlay-transparent-undo d-none">
         <div class="delete-section">
             <p>Sei sicuro di eliminare tutte le task?</p>

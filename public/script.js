@@ -28,12 +28,21 @@ const confirmBtn = document.getElementById('confirm-button')
 const closeBtn = document.querySelector('.closed-btn')
 
 
+// elementi per modifca task
+const overlayTaskModify = document.querySelector('.overlay-container-modify-task')
+const toDoComment = document.getElementById('to-do-comment')
+const toDoDate = document.getElementById('to-do-date')
+const dateText = document.querySelector('.date-text')
+const undoModifyTask = document.getElementById('undo-task-modify')
+const confirmModifyTask = document.getElementById('modify-task')
+const closedModifyTask = document.querySelector('.overlay-container-modify-task .closed-btn')
 
 
 // elementi per la gestione del drag and drop
 const cardBody = document.querySelector('.card-body')
 const cards = document.querySelectorAll('.card-body')
 const trashImg = document.querySelector('.trash-img')
+
 
 
 
@@ -95,12 +104,13 @@ darkBtn.addEventListener('click', function () {
 })
 
 
-
+let newDate
 // -----------------------------------AGGIUNTA TASK-----------------------------------------------------
 // ascolto bottone di aggiunta task
 addBtn.addEventListener('click', function () {
     overlayContainer.classList.remove('d-off')
     overlayContainer.classList.add('overflow-h')
+
 })
 // aggiunto evento di click su ogni icona
 for (let i = 0; i < selectedIcon.length; i++) {
@@ -128,6 +138,12 @@ for (let i = 0; i < selectedColor.length; i++) {
 
     })
 }
+toDoDate.addEventListener('input', function () {
+    let date = toDoDate.value.replaceAll('-', '/')
+    console.log(date)
+    newDate = date.at(8) + date.at(9) + date.at(7) + date.at(5) + date.at(6) + date.at(4) + date.at(2) + date.at(3)
+    console.log(newDate)
+})
 // pulsante annulla
 undoBtn.addEventListener('click', function (event) {
     event.preventDefault()
@@ -138,6 +154,8 @@ undoBtn.addEventListener('click', function (event) {
     color = null
     misteryColor = null
     arrayColor = []
+    newDate = undefined
+    toDoDate.value = ''
 })
 // inserimento task da parte dell'utente
 addForm.addEventListener('submit', function (event) {
@@ -152,18 +170,20 @@ addForm.addEventListener('submit', function (event) {
         removeColorFocus()
         overlayContainer.classList.add('d-off')
         overlayContainer.classList.remove('overflow-h')
-        toDoEl = createTask('div', ['to-do-element', color], toDoText.value, icon, el => (el.draggable = true))
-
+        toDoEl = createTask('div', ['to-do-element', color], toDoText.value, icon, newDate, el => (el.draggable = true))
         toDoEl.style = misteryColor
 
         if (mainCols[0].classList.contains('d-none')) {
             cards[4].appendChild(toDoEl)
-            toDoEl.innerHTML = toDoEl.innerHTML + `<span class="taskbox"><i class="fa-regular fa-square "></i></span>
-            <span class="taskcheck-box d-none"><i class="fa-regular fa-square-check"></i></span>`
+
+            addEventToDoTask()
+
+
         } else {
             cards[0].appendChild(toDoEl)
+            modifyTask()
         }
-        const save = 
+        const save =
         {
             name: 'prova',
             darkmode: "off"
@@ -181,12 +201,15 @@ addForm.addEventListener('submit', function (event) {
 
         toDoEl.addEventListener('dragstart', dragStart)
         toDoEl.addEventListener('dragend', dragEnd)
-        addEventToDoTask()
+
         toDoText.value = ''
         icon = null
         color = null
         misteryColor = null
         arrayColor = []
+        toDoComment.value = ''
+        toDoDate.value = ''
+        newDate = undefined
 
 
     }
@@ -195,6 +218,34 @@ addForm.addEventListener('submit', function (event) {
 closeBtn.addEventListener('click', function (event) {
     overlayContainer.classList.add('d-off')
     overlayContainer.classList.remove('overflow-h')
+})
+
+
+// -----------------------------------MODIFICA task (aggiunta commento)-----------------------------------------------------
+let clickedTask
+closedModifyTask.addEventListener('click', function () {
+    overlayTaskModify.classList.add('d-off')
+    overlayTaskModify.classList.remove('overflow-h')
+})
+undoModifyTask.addEventListener('click', function (event) {
+    event.preventDefault()
+    toDoComment.value = ''
+    toDoDate.value = ''
+})
+
+confirmModifyTask.addEventListener('submit', function (event) {
+    event.preventDefault()
+    if (toDoComment.value) {
+        clickedTask.title = toDoComment.value
+    } else if (!toDoComment.value) {
+        clickedTask.title = ''
+    }
+
+    overlayTaskModify.classList.add('d-off')
+    overlayTaskModify.classList.remove('overflow-h')
+    toDoComment.value = ''
+
+
 })
 
 
@@ -394,7 +445,10 @@ function dragLeave() {
 
 function drop() {
     console.log('droppato');
-    this.append(dragItem)
+    if (dragItem !== null) {
+        this.append(dragItem)
+    }
+
 }
 
 // aggiunto eventi di drag and drop al cestino
@@ -499,20 +553,28 @@ function removeCol(arrayOne, arrayTwo) {
 }
 // funzione di aggiunta possibilita di check nella to do list mode
 function addEventToDoTask() {
-    let toDoTask = document.querySelectorAll('.to-do-col .to-do-element')
-    let taskBox = document.querySelectorAll('.taskbox')
-    let taskCheck = document.querySelectorAll('.taskcheck-box')
+    // let taskBox = document.querySelectorAll('.taskbox')
+    // let taskCheck = document.querySelectorAll('.taskcheck-box')
 
-    for (let i = 0; i < toDoTask.length; i++) {
+    toDoEl.addEventListener('click', function () {
+        console.log('sto cliccando', this)
+        // taskBox.classList.toggle('d-none')
+        // taskCheck.classList.toggle('d-none')
+        this.classList.toggle('checked')
+        if (toDoEl.classList.contains('checked')) {
 
-        toDoTask[i].addEventListener('click', function () {
-            console.log('sto cliccando', this)
-            taskBox[i].classList.toggle('d-none')
-            taskCheck[i].classList.toggle('d-none')
-            toDoTask[i].classList.toggle('checked')
-        })
+        }
+    })
 
-    }
+}
+function modifyTask() {
+    toDoEl.addEventListener('click', function () {
+        clickedTask = this
+        toDoComment.value = this.title
+        overlayTaskModify.classList.remove('d-off')
+        overlayTaskModify.classList.add('overflow-h')
+
+    })
 }
 
 
@@ -524,7 +586,9 @@ function createTask(
     classList = [],
     content,
     icon,
-    callback = false
+    date,
+    callback = false,
+    callback1 = false
 ) {
     const el = document.createElement(tagName);
 
@@ -535,7 +599,14 @@ function createTask(
     if (callback) {
         callback(el);
     }
-    if (icon !== null) {
+    if (callback1) {
+        callback1(el);
+    }
+    if (icon !== null && date !== undefined) {
+        el.innerHTML = content + ' ' + icon + ' ' + date
+    } else if (icon === null && date !== undefined) {
+        el.innerHTML = content + ' ' + date
+    } else if (icon !== null && date === undefined) {
         el.innerHTML = content + ' ' + icon
     } else {
         el.innerHTML = content

@@ -130,16 +130,19 @@ h1 {
     box-shadow: rgba(0, 0, 0, 0.297) 2px 2px 4px 1px;
     transition: background-color 1s;
 }
-.taskbox{
+
+.taskbox {
     position: absolute;
     right: 14px;
 }
-.taskcheck-box{
+
+.taskcheck-box {
     position: absolute;
     right: 14px;
 }
-.to-do-col .to-do-element{
-   position: relative;
+
+.to-do-col .to-do-element {
+    position: relative;
 }
 
 .card-title {
@@ -340,6 +343,13 @@ h1 {
     color: white;
 }
 
+.form-title-secondary {
+    color: white;
+    font-size: 22px;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
 #to-do-text {
     line-height: 30px;
     font-size: 22px;
@@ -352,6 +362,38 @@ h1 {
 
 #to-do-text:focus {
     outline: 3px solid #44b4af;
+}
+
+#to-do-comment {
+    line-height: 25px;
+    font-size: 18px;
+    text-align: center;
+    width: 25vw;
+    border-radius: 14px;
+    border: none;
+    margin-bottom: 40px;
+}
+
+#to-do-comment:focus,
+#to-do-date:focus {
+    outline: 3px solid #44b4af;
+}
+
+
+#to-do-date {
+    line-height: 25px;
+    font-size: 16px;
+    text-align: center;
+    border-radius: 5px;
+    border: none;
+    margin-bottom: 40px;
+
+}
+
+.info-task {
+    display: flex;
+    justify-content: space-around;
+    gap: 45px;
 }
 
 #undo-button {
@@ -367,8 +409,22 @@ h1 {
     font-size: 16px;
 }
 
-#undo-button:hover {
+#undo-button:hover,
+#undo-task-modify:hover {
     background-color: #dfdfdf
+}
+
+#undo-task-modify {
+    margin: 15px 0 0 15px;
+    padding: 7px 10px;
+    background-color: #ffffff;
+    display: inline-block;
+    border-radius: 14px;
+    border: none;
+    line-height: 20px;
+    cursor: pointer;
+    box-shadow: rgba(0, 0, 0, 0.297) 2px 2px 4px 1px;
+    font-size: 16px;
 }
 
 #confirm-button {
@@ -385,8 +441,23 @@ h1 {
     font-size: 16px;
 }
 
-#confirm-button:hover {
+#confirm-button:hover,
+#confirm-task-modify:hover {
     background-color: #44b4af;
+}
+
+#confirm-task-modify {
+    margin: 15px 0 0 15px;
+    padding: 7px 10px;
+    background-color: #149e97;
+    display: inline-block;
+    border-radius: 14px;
+    border: none;
+    line-height: 20px;
+    cursor: pointer;
+    color: white;
+    box-shadow: rgba(0, 0, 0, 0.297) 2px 2px 4px 1px;
+    font-size: 16px;
 }
 
 .closed-btn {
@@ -404,6 +475,30 @@ h1 {
     transform: scale(1.5);
 }
 
+/* modify task */
+.overlay-container-modify-task {
+    height: 100vh;
+    width: 100%;
+    background-color: #145b9eec;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    row-gap: 35px;
+    justify-content: center;
+    visibility: visible;
+    opacity: 1;
+    transition: opacity 1s ease, visibility 0.3s ease, background-color 1s;
+    user-select: none;
+}
+
+.d-off.overlay-container-modify-task {
+    opacity: 0;
+    visibility: hidden;
+}
 
 /* MODIFY SECTION */
 
@@ -984,6 +1079,7 @@ h1 {
         display: flex;
         justify-content: space-around;
     }
+
     .add-button,
     .modify-button {
         margin: 20px 6px 5px;
@@ -1009,10 +1105,12 @@ h1 {
         box-shadow: rgba(0, 0, 0, 0.297) 2px 2px 4px 1px;
         transition: background-color 1s;
     }
+
     .col {
         width: calc(100% / 2);
         padding: 8px;
     }
+
     .to-do-col {
         width: 100%;
         padding: 15px;
@@ -1031,6 +1129,7 @@ h1 {
         width: 100%;
         min-height: 50vh;
     }
+
     .to-do-element {
         cursor: pointer;
         border-radius: 7px;
@@ -1041,16 +1140,20 @@ h1 {
         font-weight: 200;
         font-size: 12px;
     }
-    .to-do-col .to-do-element{
+
+    .to-do-col .to-do-element {
         font-size: 17px;
     }
+
     .form-title {
         color: white;
         font-size: 12px;
     }
-    .to-do-col .form-title{
+
+    .to-do-col .form-title {
         font-size: 20px;
     }
+
     #to-do-text {
         line-height: 30px;
         font-size: 12px;
@@ -1060,6 +1163,7 @@ h1 {
         border: none;
         margin-bottom: 40px;
     }
+
     .icon {
         background-color: rgb(255, 255, 255);
         font-size: 17px;
@@ -1098,6 +1202,7 @@ h1 {
         cursor: pointer;
     }
 }
+
 /* utilities class */
 .overflow-h {
     overflow: hidden;
@@ -1114,6 +1219,10 @@ h1 {
 
 
 
+}
+
+.center {
+    text-align: center;
 }
 
 /* COLOR PALETTE */
