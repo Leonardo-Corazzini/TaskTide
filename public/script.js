@@ -275,6 +275,10 @@ for (let i = 0; i < renameColBtn.length; i++) {
 for (let i = 0; i < deleteColBtn.length; i++) {
 
     deleteColBtn[i].addEventListener('click', function () {
+        for (let i = 0; i < renameColBtn.length; i++) {
+            renameColText[i].classList.add('d-none')
+            renameColBtn[i].classList.remove('d-none')
+        }
         confirmPreviewBtn.classList.remove('d-none')
         addCol.classList.remove('d-none')
         for (let i = 0; i < previewCard.length; i++) {
@@ -299,6 +303,10 @@ addColPreviewBtn.addEventListener('click', function (event) {
 // conferma dei dati della personalizzazione
 previewForm.addEventListener('submit', function (event) {
     event.preventDefault()
+    for (let i = 0; i < renameColBtn.length; i++) {
+        renameColText[i].classList.add('d-none')
+        renameColBtn[i].classList.remove('d-none')
+    }
     modOverlayContainer.classList.add('d-off')
     modOverlayContainer.classList.remove('overflow-h')
     confirmPreviewBtn.classList.add('d-none')

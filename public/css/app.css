@@ -460,6 +460,10 @@ h1 {
     font-size: 16px;
 }
 
+.info-task-btn {
+    text-align: center;
+}
+
 .closed-btn {
     margin: 50px;
     font-size: 35px;
@@ -530,11 +534,14 @@ h1 {
     display: flex;
     flex-wrap: wrap;
     width: 70vw;
+    border-radius: 8px;
+    box-shadow: 5px 7px 200px cadetblue;
     min-height: 500px;
-    background-color: #A7E8BD;
     padding: 20px;
     position: relative;
+    animation: bgcolors2 5s infinite;
 }
+
 
 .preview-col .card {
     height: 100%;
@@ -545,8 +552,8 @@ h1 {
     display: flex;
     justify-content: center;
     gap: 5px;
-    border: solid 1px black;
     cursor: pointer;
+
 }
 
 .preview-undo-btn {
@@ -584,8 +591,25 @@ h1 {
     animation: colors 4s infinite;
 }
 
+.fa-pencil {
+    transition: transform 0.3s;
+}
 
+.preview-card-title:hover {
+    text-decoration: underline;
 
+    .fa-pencil {
+        transform: scale(1.2);
+    }
+}
+
+.fa-circle-xmark {
+    transition: transform 0.3s;
+}
+
+.fa-circle-xmark:hover {
+    transform: scale(1.2);
+}
 
 
 /* --------------------------------------------------------------------------------------------------------------- */
@@ -696,6 +720,35 @@ h1 {
         background-color: #A92420;
     }
 
+}
+
+@keyframes bgcolors2 {
+    0% {
+        background-color: #a6acab;
+        box-shadow: 5px 7px 200px #7d9bb3;
+    }
+
+    25% {
+        background-color: #7d9bb3;
+        box-shadow: 5px 7px 300px #69b1ec;
+    }
+
+    50% {
+        background-color: #a6acab;
+        box-shadow: 5px 7px 400px #517897;
+    }
+
+    75% {
+        background-color: #7d9bb3;
+        box-shadow: 5px 7px 400px #30597a;
+    }
+
+
+    100% {
+        background-color: #a6acab;
+        box-shadow: 5px 7px 200px #2c5c83;
+
+    }
 }
 
 @keyframes colors {
@@ -1021,7 +1074,8 @@ h1 {
     opacity: 1;
 }
 
-.dark-mode .overlay-container {
+.dark-mode .overlay-container,
+.dark-mode .overlay-container-modify-task {
     background-color: rgba(16, 16, 16, 0.897);
 
 }
@@ -1039,11 +1093,13 @@ h1 {
     background-color: #2373be;
 }
 
-.dark-mode #confirm-button {
+.dark-mode #confirm-button,
+.dark.mode #confirm-task-modify {
     background-color: #145C9E;
 }
 
-.dark-mode #confirm-button:hover {
+.dark-mode #confirm-button:hover,
+.dark.mode #confirm-task-modify:hover {
     background-color: #2373be;
 }
 
