@@ -1206,8 +1206,12 @@ h1 {
         font-size: 12px;
     }
 
+    .form-title-secondary {
+        font-size: 16px;
+    }
+
     .to-do-col .form-title {
-        font-size: 20px;
+        font-size: 10px;
     }
 
     #to-do-text {
@@ -1218,6 +1222,11 @@ h1 {
         border-radius: 14px;
         border: none;
         margin-bottom: 40px;
+    }
+
+    .icon-section,
+    .color-section {
+        margin-top: 3px;
     }
 
     .icon {
