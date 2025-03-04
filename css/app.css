@@ -1133,12 +1133,12 @@ h1 {
 @media (max-width: 576px) {
     .btn-section {
         display: flex;
-        justify-content: space-around;
+        justify-content: start;
     }
 
     .add-button,
     .modify-button {
-        margin: 20px 6px 5px;
+        margin: 20px 15px 5px;
         padding: 7px 10px;
         background-color: #145C9E;
         border-radius: 14px;
@@ -1183,7 +1183,7 @@ h1 {
 
     .to-do-col .card-body {
         width: 100%;
-        min-height: 50vh;
+        min-height: 60vh;
     }
 
     .to-do-element {
@@ -1197,8 +1197,17 @@ h1 {
         font-size: 12px;
     }
 
+    .to-do-element:hover {
+        transform: scale(1.0);
+        opacity: 1;
+    }
+
     .to-do-col .to-do-element {
         font-size: 17px;
+    }
+
+    .to-do-col .card-title {
+        display: none;
     }
 
     .form-title {
@@ -1214,6 +1223,10 @@ h1 {
         font-size: 10px;
     }
 
+    #add-form div:nth-child(2) {
+        display: none;
+    }
+
     #to-do-text {
         line-height: 30px;
         font-size: 12px;
@@ -1224,7 +1237,6 @@ h1 {
         margin-bottom: 40px;
     }
 
-    .icon-section,
     .color-section {
         margin-top: 3px;
     }
@@ -1256,6 +1268,10 @@ h1 {
         transition: outline 0.2s;
     }
 
+    .date-section {
+        display: none;
+    }
+
     .closed-btn {
         margin: 0px;
         font-size: 25px;
@@ -1265,6 +1281,10 @@ h1 {
         right: 25px;
         transition: transform 0.3s;
         cursor: pointer;
+    }
+
+    .icon-section {
+        display: none;
     }
 }
 

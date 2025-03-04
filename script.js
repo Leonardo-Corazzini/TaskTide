@@ -70,25 +70,14 @@ const undoDelete = document.querySelector('.no')
 const deleteAllBtn = document.querySelector('.yes')
 
 
+if (window.innerWidth < 768) {
+    console.log('Schermo piccolo: eseguo azione mobile');
+    todoMode()
+    toDoBtn.classList.add('d-none')
+} else {
+    console.log('Schermo grande: eseguo azione desktop');
+}
 
-document.addEventListener('DOMContentLoaded', function () {
-    axios
-        .get('http://192.168.1.253:3000/save')
-        .then((res) => {
-            const lastSave = res.data
-            console.log(lastSave)
-            if (lastSave.darkmode === 'on') {
-                document.body.classList.add('dark-mode')
-            } else {
-                document.body.classList.remove('dark-mode')
-            }
-
-        })
-        .catch((err) => {
-            console.log(err)
-        })
-
-})
 
 
 
@@ -344,7 +333,9 @@ closeBtn2.addEventListener('click', function (event) {
 
 
 // -----------------------------------TO DO LIST MODE-----------------------------------------------------
-toDoBtn.addEventListener('click', function () {
+toDoBtn.addEventListener('click', todoMode)
+
+function todoMode() {
 
 
     modBtn.classList.toggle('d-none')
@@ -370,7 +361,7 @@ toDoBtn.addEventListener('click', function () {
         }
     }
 
-})
+}
 
 
 // -----------------------------------ELIMINAZIONE TOTALE TASK-----------------------------------------------------
